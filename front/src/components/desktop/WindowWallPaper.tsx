@@ -9,8 +9,8 @@ import dynamic from "next/dynamic";
 function folder(clickedItem: string | undefined) {
   if (!clickedItem) return null;
   const FolderComponent = dynamic(() => import(`../folder/${clickedItem}`), {
-    loading: () => <div>Loading...</div>, // 로딩 중에 보일 컴포넌트
-    ssr: false, // 서버사이드 렌더링 비활성화
+    loading: () => <div>Loading...</div>,
+    ssr: false,
   });
   return <FolderComponent />;
 }
@@ -36,7 +36,7 @@ export default function WindowWallPaper() {
   return (
     <Container>
       {/* 폴더 */}
-      {renderComponent}
+      {/* {renderComponent} */}
       {/* 아이콘 모음 */}
       <IconGrid
         setClickedItem={setClickedItem}
