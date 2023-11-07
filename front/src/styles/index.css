@@ -3,6 +3,11 @@
   src: url(../fonts/PokemonSolidNormal.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Microsoft", sans-serif;
+  src: url("https://fonts.cdnfonts.com/css/microsoft-sans-serif");
+}
+
 html,
 body,
 div,
@@ -90,6 +95,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -126,4 +132,10 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
 }
