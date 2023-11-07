@@ -7,3 +7,8 @@ export type BtmOpenProps = {
 export type ClickIndexProps = {
   isSelected: boolean;
 };
+
+// Folder Menu props
+export type HoverItem = {
+  isHoverd: boolean;
+};
