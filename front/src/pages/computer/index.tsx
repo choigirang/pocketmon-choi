@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
 import Menu from "@/components/folder/Menu";
 // import computer from "@/My-Computer.png";
 
 export default function MyComputer() {
-  const router = useRouter();
+  const [hoverItem, setHoverItem] = useState<undefined | string>(undefined);
+  const [clickItem, setClickItem] = useState<undefined | string>(undefined);
 
   return (
     <Container>
@@ -14,7 +15,13 @@ export default function MyComputer() {
         <Image src="/image/My-Computer.png" alt="lgoo" width={24} height={24} />
         <span>My Computer</span>
       </Folder>
-      <Menu />
+      {/* /folder의 메뉴 list */}
+      <Menu
+        hoverItem={hoverItem}
+        setHoverItem={setHoverItem}
+        clickItem={clickItem}
+        setClickItem={setClickItem}
+      />
       <List></List>
     </Container>
   );
@@ -40,5 +47,5 @@ const Folder = styled.div`
 const List = styled.div`
   width: 100%;
   height: 100%;
-  box-shadow: rgb(71, 71, 71) 4px 4px inset, rgba(237, 237, 238) -4px -4px inset;
+  box-shadow: var(--box-shadow-black);
 `;
