@@ -2,7 +2,7 @@ import React, { SetStateAction, useState } from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
 import pixel_logo from "img/window_pixel.svg";
-import { BtmOpenProps } from "@/types/desktop/props";
+import { BtmOpenProps } from "@/types/props";
 import NavMenu from "./NavMenu";
 
 export default function BtmNav({
@@ -15,7 +15,7 @@ export default function BtmNav({
   return (
     <Container>
       {menuOpen && <NavMenu />}
-      <Btn open={menuOpen} onClick={() => setMenuOpen(!open)}>
+      <Btn open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
         <Image src={pixel_logo} alt="" className="pixel-logo" width={30} />
         <span>Start</span>
       </Btn>
