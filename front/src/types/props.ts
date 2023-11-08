@@ -10,5 +10,10 @@ export type ClickIndexProps = {
 
 // Folder Menu props
 export type HoverItem = {
-  isHoverd: boolean;
+  hovered: boolean;
+};
+
+// Folder PockemonBg props
+export type BgShow = {
+  show: boolean;
 };
