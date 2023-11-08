@@ -2,7 +2,10 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
 
-const imageNames = ["My-Computer.png"];
+const imageNames: Record<string, string> = {
+  computer: "My-Computer.png",
+  pockemon: "Pockemon.png",
+};
 
 export default function IconGrid({
   changeBg,
@@ -38,29 +41,36 @@ export default function IconGrid({
   function loadFolder(imgName: string) {
     setClicked(false);
     setClickedItem(removeExtension(imgName).replaceAll(/-/g, ``));
-    const width = 800; // 새 창의 가로 크기
-    const height = 600; // 새 창의 세로 크기
-    window.open("/computer", "", `width=${width},height=${height}`);
+    const width = 800;
+    const height = 600;
+    window.open(
+      `/${Object.keys(imageNames).find((key) => imageNames[key] === imgName)}`,
+      "",
+      `width=${width},height=${height}`
+    );
   }
 
   return (
     <Container>
       <ItemBox>
-        {imageNames.map((imageName, index) => (
+        {/* 이미지 추가될 때마다 public/image 에서 png 가져오기 */}
+        {Object.keys(imageNames).map((imageName, index) => (
           <Item
             key={index}
             onClick={() => changeClick(index)}
-            onDoubleClick={() => loadFolder(imageName)}
+            onDoubleClick={() => loadFolder(imageNames[imageName])}
           >
             {/* 클릭 시 blue bg 추가 */}
             {changeBg === index && <ClickChangeBg />}
+            {/* 이미지 */}
             <Image
-              src={require(`../../../public/image/${imageName}`)}
+              src={require(`../../../public/image/${imageNames[imageName]}`)}
               alt={imageName}
               className="icon"
             />
+            {/* 파일명 */}
             <NameTag>
-              {removeExtension(imageName).replaceAll(/-/g, ` `)}
+              {removeExtension(imageNames[imageName]).replaceAll(/-/g, ` `)}
             </NameTag>
           </Item>
         ))}
@@ -70,7 +80,6 @@ export default function IconGrid({
 }
 
 const Container = styled.div`
-  height: 100%;
   padding: 10px;
   display: flex;
   position: absolute;
@@ -81,6 +90,7 @@ const Container = styled.div`
 const ItemBox = styled.ul`
   display: flex;
   flex-direction: column;
+  gap: 20px;
 `;
 
 const Item = styled.li`
