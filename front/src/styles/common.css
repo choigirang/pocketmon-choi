@@ -1,0 +1,7 @@
+:root {
+  --default-cursor: url("/image/default-cursor.png")
+  --box-shadow-white: rgb(237, 237, 238) 3px 3px inset,
+    rgba(71, 71, 71) -3px -3px inset;
+  --box-shadow-black: rgb(71, 71, 71) 4px 4px inset,
+    rgba(237, 237, 238) -4px -4px inset;
+}
