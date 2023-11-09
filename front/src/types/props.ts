@@ -13,7 +13,7 @@ export type HoverItem = {
   hovered: boolean;
 };
 
-// Folder PockemonBg props
-export type BgShow = {
-  show: boolean;
+// Folder PockemonBg props (Common fade effect)
+export type Fade = {
+  $fade: boolean;
 };
