@@ -1,5 +1,5 @@
 import PockemonBg from "@/components/folder/PockemonBg";
-import PartOne from "@/components/story/PartOneTutorial";
+import PartOneTutorial from "@/components/story/PartOneTutorial";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
@@ -22,7 +22,7 @@ export default function Pockemon() {
   return (
     <Container>
       {showPockemonBg && <PockemonBg />}
-      {!showPockemonBg && <PartOne />}
+      {!showPockemonBg && <PartOneTutorial />}
     </Container>
   );
 }
