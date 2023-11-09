@@ -54,8 +54,6 @@ export default function PartOne() {
 
   // 클릭했을 때의 이벤트
   function handleShowTextWithClick() {
-    if (showText === 7) return setFade(!fade);
-
     if (showText < 7) {
       if (textIndex < PART_ONE_DATA[showText].length) {
         // 타이핑 중이면 모든 텍스트
