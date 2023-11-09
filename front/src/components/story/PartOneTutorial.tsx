@@ -8,104 +8,30 @@ import { Fade } from "@/types/props";
 import { KeyboardEvent } from "@/types/event";
 import { lightAni, nameAni } from "@/styles/animation";
 import { PART_ONE_DATA } from "@/constant/constant";
+import useTyping from "@/hooks/useTyping";
 
-export default function PartOne() {
-  // text 불러올 상태값
-  const [showText, setShowText] = useState(1);
-  // 입력되며 보여질 string 저장값
-  const [displayedText, setDisplayedText] = useState("");
-  // str의 idx
-  const [textIndex, setTextIndex] = useState(0);
-  // 컴포넌트 종료와 함께 fade-out 효과
-  const [fade, setFade] = useState(true);
-
-  // 저장된 text 끝났을 시 router 이동
-  const router = useRouter();
-  // div 요소에 focus
-  const refForKey = useRef<HTMLDivElement>(null);
-
-  // str의 idx만큼 displayedText를 계속 추가
-  useEffect(() => {
-    if (textIndex < PART_ONE_DATA[showText].length) {
-      const timer = setTimeout(() => {
-        setDisplayedText(
-          (prevText) => prevText + PART_ONE_DATA[showText][textIndex]
-        );
-        setTextIndex((prevIndex) => prevIndex + 1);
-      }, 50);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showText, textIndex]);
-
-  // opacity 효과가 끝나고 router 이동
-  useEffect(() => {
-    // 초깃값으로 바로 이동하지 않도록
-    if (fade) return;
-    setTimeout(() => {
-      router.push("/pokemon/save");
-    }, 2000);
-  }, [fade]);
-
-  // Container focus
-  useEffect(() => {
-    refForKey.current!.focus();
-  }, []);
-
-  // 클릭했을 때의 이벤트
-  function handleShowTextWithClick() {
-    if (showText < 7) {
-      if (textIndex < PART_ONE_DATA[showText].length) {
-        // 타이핑 중이면 모든 텍스트
-        setDisplayedText(PART_ONE_DATA[showText]);
-        setTextIndex(PART_ONE_DATA[showText].length);
-      } else {
-        setShowText(showText + 1);
-        setDisplayedText(""); // 이벤트 핸들러가 동작해서 showText가 증가하면 초기화
-        setTextIndex(0);
-      }
-    }
-  }
-
-  // 키보드 이벤트 핸들러
-  function handleShowTextWithKeyboard(e: KeyboardEvent) {
-    if (e.key === " " || e.key === "Enter" || e.key === "ArrowDown") {
-      if (showText === 7) return setFade(!fade);
-
-      if (showText < 7) {
-        if (textIndex < PART_ONE_DATA[showText].length) {
-          // 타이핑 중이면 모든 텍스트
-          setDisplayedText(PART_ONE_DATA[showText]);
-          setTextIndex(PART_ONE_DATA[showText].length);
-        } else {
-          setShowText(showText + 1);
-          setDisplayedText(""); // 이벤트 핸들러가 동작해서 showText가 증가하면 초기화
-          setTextIndex(0);
-        }
-      } else {
-        router.push("/pokemon/save");
-      }
-    }
-  }
+export default function PartOneTutorial() {
+  const { showTxt, displayedTxt, handleClick, handleKey, fade, ref } =
+    useTyping({ txt: PART_ONE_DATA, url: "/pokemon/save" });
 
   return (
     <Container
       $fade={fade}
-      onKeyDown={handleShowTextWithKeyboard}
-      onClick={handleShowTextWithClick}
+      onKeyDown={handleKey}
+      onClick={handleClick}
       tabIndex={0}
-      ref={refForKey}
+      ref={ref}
     >
       <Image src={professor} alt="professor" className="professor"></Image>
       {/* 하단 텍스트 */}
       <TextBoxBorder>
         <TextBox>
-          {showText === 7 ? (
+          {showTxt === Object.keys(PART_ONE_DATA).length ? (
             <>
-              <Name className="name">Mr.Choi</Name> {displayedText}
+              <Name className="name">Mr.Choi</Name> {displayedTxt}
             </>
           ) : (
-            displayedText
+            displayedTxt
           )}
         </TextBox>
         <MdArrowDropDown className="icon" />
@@ -124,7 +50,7 @@ const Container = styled.div<Fade>`
   font-family: "Galmuri14", sans-serif;
   font-size: 50px;
   transition: all 2s;
-  opacity: ${(prosp) => (prosp.$fade ? 1 : 0)};
+  opacity: ${(prosp) => (prosp.$fade ? 0 : 1)};
 
   @media (min-width: 768px) and (max-width: 1200px) {
     /* 태블릿*/
