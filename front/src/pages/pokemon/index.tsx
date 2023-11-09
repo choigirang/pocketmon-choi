@@ -1,12 +1,14 @@
 import PockemonBg from "@/components/folder/PockemonBg";
-import PartOne from "@/components/tutorial/PartOne";
+import PartOne from "@/components/story/PartOneTutorial";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 export default function Pockemon() {
+  // 배경 제어 상태값
   const [showPockemonBg, setShowPockemonBg] = useState(true);
 
+  // 초기 배경 setTime
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPockemonBg(false);
@@ -20,7 +22,7 @@ export default function Pockemon() {
   return (
     <Container>
       {showPockemonBg && <PockemonBg />}
-      <PartOne />
+      {!showPockemonBg && <PartOne />}
     </Container>
   );
 }
