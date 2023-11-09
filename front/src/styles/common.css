@@ -1,7 +1,11 @@
 :root {
-  --default-cursor: url("/image/default-cursor.png")
+  --default-cursor: url("/image/default-cursor.png");
   --box-shadow-white: rgb(237, 237, 238) 3px 3px inset,
     rgba(71, 71, 71) -3px -3px inset;
-  --box-shadow-black: rgb(71, 71, 71) 4px 4px inset,
-    rgba(237, 237, 238) -4px -4px inset;
+  --box-shadow-black: rgb(71, 71, 71) 3px 3px inset,
+    rgba(237, 237, 238) -3px -3px inset;
+  --font-14: "Galmuri14", sans-serif;
+  --font-11: "Galmuri11", sans-serif;
+  --font-9: "Galmuri9", sans-serif;
+  --font-7: "Galmuri7", sans-serif;
 }
