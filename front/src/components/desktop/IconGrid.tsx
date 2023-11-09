@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const imageNames: Record<string, string> = {
   computer: "My-Computer.png",
-  pockemon: "Pockemon.png",
+  pokemon: "Pokemon.png",
 };
 
 export default function IconGrid({
