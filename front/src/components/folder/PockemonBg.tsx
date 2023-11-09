@@ -1,22 +1,23 @@
-import { BgShow } from "@/types/props";
+import { Fade } from "@/types/props";
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 export default function PockemonBg() {
-  const [show, setShow] = useState(true);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShow(false);
+      setFade(false);
     }, 4000);
 
+    // 컴포넌트 언마운트 시 오류 방지를 위한
     return () => {
       clearTimeout(timer);
     };
   }, []);
 
   return (
-    <Container show={show}>
+    <Container $fade={fade}>
       <Logo>
         <span className="text">Pockemon</span>
         <span className="text small">CHOI</span>
@@ -25,14 +26,14 @@ export default function PockemonBg() {
   );
 }
 
-const Container = styled.div<BgShow>`
+const Container = styled.div<Fade>`
   width: 100%;
   height: 100%;
   background-image: url("/image/loading-pockemon.png");
   background-size: cover;
   background-position: center;
   position: relative;
-  opacity: ${(props) => (props.show ? 1 : 0)};
+  opacity: ${(props) => (props.$fade ? 1 : 0)};
   transition: opacity 0.5s;
 `;
 
