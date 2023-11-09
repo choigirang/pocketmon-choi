@@ -1,3 +1,8 @@
+// useTyping
+export type TxtData = {
+  [key: string | number]: string;
+};
+
 // BtmNav props
 export type BtmOpenProps = {
   open: boolean;
