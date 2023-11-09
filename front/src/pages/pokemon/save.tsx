@@ -54,7 +54,7 @@ const Container = styled.div`
     height: auto;
     position: absolute;
     z-index: -1;
-    right: 30%;
+    right: 100px;
     top: 20px;
   }
 
