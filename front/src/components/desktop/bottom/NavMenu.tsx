@@ -1,4 +1,5 @@
 import { ICONS_FILE } from "@/constant/constant";
+import useOpenWindow from "@/hooks/useOpenWindow";
 import { FlexibleScale, HoverItem } from "@/types/props";
 import Image from "next/image";
 import React, {
@@ -20,6 +21,9 @@ export default function NavMenu() {
 
   // 리스트 높이값을 위한 ref
   const navRef = useRef<HTMLUListElement>(null);
+
+  // windowOpen
+  const openWindow = useOpenWindow(ICONS_FILE);
 
   // position bottom 값을 위한
   useEffect(() => {
@@ -49,6 +53,7 @@ export default function NavMenu() {
               key={idx}
               hovered={hovered === imageName}
               onMouseOver={() => setHovered(imageName)}
+              onClick={() => openWindow(imageName)}
             >
               <Image
                 src={require(`../../../../public/image/${ICONS_FILE[imageName]}`)}
