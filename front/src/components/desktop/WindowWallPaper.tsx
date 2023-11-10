@@ -6,20 +6,7 @@ import BtmNav from "./bottom/BtmNav";
 import IconGrid from "./IconGrid";
 import dynamic from "next/dynamic";
 
-function folder(clickedItem: string | undefined) {
-  if (!clickedItem) return null;
-  const FolderComponent = dynamic(() => import(`../folder/${clickedItem}`), {
-    loading: () => <div>Loading...</div>,
-    ssr: false,
-  });
-  return <FolderComponent />;
-}
-
 export default function WindowWallPaper() {
-  const [renderComponent, setRenderComponent] = useState<JSX.Element | null>(
-    null
-  );
-
   // 클릭한 요소 배경 변경
   const [changeBg, setChangeBg] = useState<undefined | number>(undefined);
 
@@ -28,10 +15,6 @@ export default function WindowWallPaper() {
 
   // handle menu barw
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setRenderComponent(folder(clickedItem));
-  }, [clickedItem]);
 
   return (
     <Container>
