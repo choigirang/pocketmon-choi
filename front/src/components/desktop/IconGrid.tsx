@@ -2,49 +2,19 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
 import { ICONS_FILE } from "@/constant/constant";
+import useRemoverExtension from "../../hooks/useRemoverExtension";
+import { useChangeIconBg } from "@/hooks/useChangeIconBg";
+import useOpenWindow from "@/hooks/useOpenWindow";
 
-export default function IconGrid({
-  changeBg,
-  setClickedItem,
-  setChangeBg,
-}: {
-  changeBg: undefined | number;
-  setClickedItem: Dispatch<SetStateAction<undefined | string>>;
-  setChangeBg: Dispatch<SetStateAction<undefined | number>>;
-}) {
-  // 클릭과 더블 클릭 구분을 위한
-  const [clicked, setClicked] = useState(false);
+export default function IconGrid() {
+  // 클릭한 아이콘을 위한 훅
+  const { changeBg, changeClick } = useChangeIconBg();
 
-  // 확장자 지우기
-  function removeExtension(fileName: string) {
-    return fileName.split(".").slice(0, -1).join(".");
-  }
+  // 불러온 파일명의 확장자를 삭제할 훅
+  const removeExtension = useRemoverExtension();
 
-  // 클릭한 요소에 따른 bg 부여
-  function changeClick(index: number) {
-    if (!clicked) {
-      if (changeBg === index) return setChangeBg(undefined);
-      setClicked(true);
-      setTimeout(() => {
-        // 지정한 시간(예: 300ms) 후 클릭 상태를 초기화
-        setClicked(false);
-      }, 300);
-      setChangeBg(index);
-    }
-  }
-
-  // 더블 클릭한 요소를 WindowWallPaper에서 folder로 띄우기
-  function loadFolder(imgName: string) {
-    setClicked(false);
-    setClickedItem(removeExtension(imgName).replaceAll(/-/g, ``));
-    const width = 800;
-    const height = 600;
-    window.open(
-      `/${Object.keys(ICONS_FILE).find((key) => ICONS_FILE[key] === imgName)}`,
-      "",
-      `width=${width},height=${height}`
-    );
-  }
+  // loadFolder로 DATA와 DATA에 맞는 주소로 이동하는 훅
+  const loadFolder = useOpenWindow(ICONS_FILE);
 
   return (
     <Container>
@@ -54,7 +24,7 @@ export default function IconGrid({
           <Item
             key={index}
             onClick={() => changeClick(index)}
-            onDoubleClick={() => loadFolder(ICONS_FILE[imageName])}
+            onDoubleClick={() => loadFolder(imageName)}
           >
             {/* 클릭 시 blue bg 추가 */}
             {changeBg === index && <ClickChangeBg />}
