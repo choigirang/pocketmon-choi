@@ -1,8 +1,8 @@
 // 대사
-type Script = Record<number, string>;
+export type Script = Record<number, string>;
 
 // 아이콘 태그
-type IconNames = Record<string, string>;
+export type IconNames = Record<string, string>;
 
 // PartOneTutorial
 export const PART_ONE_DATA: Script = {
