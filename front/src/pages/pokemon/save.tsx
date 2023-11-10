@@ -3,28 +3,29 @@ import { styled } from "styled-components";
 import mainImg from "img/main.png";
 import Image from "next/image";
 import { MdArrowRight } from "react-icons/md";
-import { KeyboardEvent } from "@/types/event";
-import { useRouter } from "next/router";
 import { lightAni } from "@/styles/animation";
+import useTyping from "@/hooks/useTyping";
+import { SAVE_DATA } from "@/constant/constant";
+import { Fade } from "@/types/props";
 
 export default function save() {
-  const router = useRouter();
-  // div 키보드 이벤트를 위한 ref
-  const focusRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    focusRef.current!.focus();
-  }, []);
-
-  function selectDataHandler(e: KeyboardEvent) {
-    if (e.key === "Enter") router.push("/pokemon/data");
-  }
+  const { ref, displayedTxt, fade, handleClick, handleKeyBoard } = useTyping({
+    txt: SAVE_DATA,
+    url: "/",
+  });
 
   return (
-    <Container ref={focusRef} onKeyDown={selectDataHandler}>
+    <Container
+      ref={ref}
+      onKeyDown={handleKeyBoard}
+      onClick={handleClick}
+      $fade={fade}
+      tabIndex={0}
+    >
       <Image src={mainImg} alt="main-charactor" className="charactor" />
       {/* 데이터 선택 */}
       <SelectBoxBorder>
+        <DataTag>데이터</DataTag>
         <SelectBox>
           <MdArrowRight className="icon" />
           <DataName>최기랑</DataName>
@@ -32,13 +33,13 @@ export default function save() {
       </SelectBoxBorder>
       {/* 하단 텍스트 */}
       <TextBoxBorder>
-        <TextBox>저장된 데이터를 불러옵니다.</TextBox>
+        <TextBox>{displayedTxt}</TextBox>
       </TextBoxBorder>
     </Container>
   );
 }
 
-const Container = styled.div`
+const Container = styled.div<Fade>`
   width: 100vw;
   height: 100vh;
   padding: 10px;
@@ -48,6 +49,7 @@ const Container = styled.div`
   position: relative;
   font-family: "Galmuri14", sans-serif;
   font-size: 50px;
+  gap: 20px;
 
   .charactor {
     width: 250px;
@@ -61,14 +63,14 @@ const Container = styled.div`
   @media (min-width: 768px) and (max-width: 1200px) {
     /* 태블릿*/
     .charactor {
-      right: 20px;
+      left: 50%;
     }
   }
 
   @media (max-width: 767px) {
     /* 모바일 */
     .charactor {
-      right: 20px;
+      left: 50%;
     }
   }
 `;
@@ -76,10 +78,12 @@ const Container = styled.div`
 // 데이터 선택
 const SelectBoxBorder = styled.div`
   width: 300px;
+  margin-top: 50px;
   border: solid 3px black;
   border-radius: 7px;
   padding: 5px;
   background-color: white;
+  position: relative;
 
   @media (min-width: 800px) {
     height: 500px;
@@ -101,6 +105,7 @@ const SelectBox = styled.div`
   height: 100%;
   border: solid 4px black;
   padding: 10px;
+  padding-top: 50px;
   background-color: white;
   display: flex;
 
@@ -109,6 +114,19 @@ const SelectBox = styled.div`
     height: 50px;
     animation: ${lightAni} 1s infinite;
   }
+`;
+
+// 데이터
+const DataTag = styled.div`
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%);
 `;
 
 const DataName = styled.span`
