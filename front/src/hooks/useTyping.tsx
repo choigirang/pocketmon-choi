@@ -38,7 +38,7 @@ export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
   };
 
   // 키보드 핸들러
-  const handleKey = (e: KeyboardEvent) => {
+  const handleKeyBoard = (e: KeyboardEvent) => {
     if (e.key === " " || e.key === "Enter" || e.key === "ArrowDown") {
       // 불러올 대사 없을 시 fade
       if (showTxt === Object.keys(txt).length) return setFade(true);
@@ -82,5 +82,5 @@ export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
     ref.current!.focus();
   }, []);
 
-  return { showTxt, displayedTxt, handleClick, handleKey, fade, ref };
+  return { showTxt, displayedTxt, handleClick, handleKeyBoard, fade, ref };
 }
