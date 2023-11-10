@@ -1,11 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
-
-const imageNames: Record<string, string> = {
-  computer: "My-Computer.png",
-  pokemon: "Pokemon.png",
-};
+import { ICONS_FILE } from "@/constant/constant";
 
 export default function IconGrid({
   changeBg,
@@ -44,7 +40,7 @@ export default function IconGrid({
     const width = 800;
     const height = 600;
     window.open(
-      `/${Object.keys(imageNames).find((key) => imageNames[key] === imgName)}`,
+      `/${Object.keys(ICONS_FILE).find((key) => ICONS_FILE[key] === imgName)}`,
       "",
       `width=${width},height=${height}`
     );
@@ -54,24 +50,24 @@ export default function IconGrid({
     <Container>
       <ItemBox>
         {/* 이미지 추가될 때마다 public/image 에서 png 가져오기 */}
-        {Object.keys(imageNames).map((imageName, index) => (
+        {Object.keys(ICONS_FILE).map((imageName, index) => (
           <Item
             key={index}
             onClick={() => changeClick(index)}
-            onDoubleClick={() => loadFolder(imageNames[imageName])}
+            onDoubleClick={() => loadFolder(ICONS_FILE[imageName])}
           >
             {/* 클릭 시 blue bg 추가 */}
             {changeBg === index && <ClickChangeBg />}
             {/* 이미지 */}
             <Image
-              src={require(`../../../public/image/${imageNames[imageName]}`)}
+              src={require(`../../../public/image/${ICONS_FILE[imageName]}`)}
               alt={imageName}
               className="icon"
             />
             {/* 파일명 */}
-            <NameTag>
-              {removeExtension(imageNames[imageName]).replaceAll(/-/g, ` `)}
-            </NameTag>
+            <FileName>
+              {removeExtension(ICONS_FILE[imageName]).replaceAll(/-/g, ` `)}
+            </FileName>
           </Item>
         ))}
       </ItemBox>
@@ -109,7 +105,7 @@ const Item = styled.li`
   }
 `;
 
-const NameTag = styled.span`
+const FileName = styled.span`
   color: white;
   z-index: 1;
 `;
