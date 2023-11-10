@@ -1,5 +1,20 @@
+@import url("https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css");
+
+/* 로고 pockmon */
+@font-face {
+  font-family: "Pockemon-logo";
+  src: url(../fonts/PokemonSolidNormal.ttf) format("truetype");
+}
+
+/* 영문 픽셀 기본 */
+@font-face {
+  font-family: "Microsoft", sans-serif;
+  src: url("https://fonts.cdnfonts.com/css/microsoft-sans-serif");
+}
+
 :root {
   --default-cursor: url("/image/default-cursor.png");
+  --base-gray: #bac3bf;
   --box-shadow-white: rgb(237, 237, 238) 3px 3px inset,
     rgba(71, 71, 71) -3px -3px inset;
   --box-shadow-black: rgb(71, 71, 71) 3px 3px inset,
