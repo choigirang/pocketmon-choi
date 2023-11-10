@@ -3,9 +3,14 @@ export type TxtData = {
   [key: string | number]: string;
 };
 
-// BtmNav props
+// bottom/BtmNav props
 export type BtmOpenProps = {
   open: boolean;
+};
+
+// bottom/NavMenu props
+export type UlHeight = {
+  navHeight: number;
 };
 
 // IconGrid Item props
@@ -13,7 +18,7 @@ export type ClickIndexProps = {
   isSelected: boolean;
 };
 
-// Folder Menu props
+// Folder Menu & bottom/NavMenu props
 export type HoverItem = {
   hovered: boolean;
 };
