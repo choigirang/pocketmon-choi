@@ -9,7 +9,8 @@ export type BtmOpenProps = {
 };
 
 // bottom/NavMenu props
-export type UlHeight = {
+export type FlexibleScale = {
+  navWidth: number;
   navHeight: number;
 };
 
