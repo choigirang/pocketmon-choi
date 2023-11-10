@@ -11,13 +11,13 @@ import { PART_ONE_DATA } from "@/constant/constant";
 import useTyping from "@/hooks/useTyping";
 
 export default function PartOneTutorial() {
-  const { showTxt, displayedTxt, handleClick, handleKey, fade, ref } =
+  const { showTxt, displayedTxt, handleClick, handleKeyBoard, fade, ref } =
     useTyping({ txt: PART_ONE_DATA, url: "/pokemon/save" });
 
   return (
     <Container
       $fade={fade}
-      onKeyDown={handleKey}
+      onKeyDown={handleKeyBoard}
       onClick={handleClick}
       tabIndex={0}
       ref={ref}
@@ -28,7 +28,7 @@ export default function PartOneTutorial() {
         <TextBox>
           {showTxt === Object.keys(PART_ONE_DATA).length ? (
             <>
-              <Name className="name">Mr.Choi</Name> {displayedTxt}
+              <Name className="name">최기랑</Name> {displayedTxt}
             </>
           ) : (
             displayedTxt
