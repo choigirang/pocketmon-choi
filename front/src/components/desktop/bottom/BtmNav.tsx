@@ -61,7 +61,7 @@ const Container = styled.nav`
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: #bac3bf;
+  background-color: var(--base-gray);
   box-shadow: rgb(237, 237, 238) 3px 3px inset,
     rgba(255, 255, 255, 0.5) -3px -3px inset;
 `;
