@@ -1,5 +1,5 @@
 import { ICONS_FILE } from "@/constant/constant";
-import { HoverItem, UlHeight } from "@/types/props";
+import { FlexibleScale, HoverItem } from "@/types/props";
 import Image from "next/image";
 import React, {
   Dispatch,
@@ -11,7 +11,9 @@ import React, {
 import { css, styled } from "styled-components";
 
 export default function NavMenu() {
-  // Container 높이값
+  // Container width
+  const [navWidth, setNavWidth] = useState(0);
+  // Container height
   const [navHeight, setNavHeight] = useState(0);
   // hover
   const [hovered, setHovered] = useState("");
@@ -22,6 +24,7 @@ export default function NavMenu() {
   // position bottom 값을 위한
   useEffect(() => {
     if (navRef.current) {
+      setNavWidth(navRef.current.clientWidth);
       setNavHeight(navRef.current.clientHeight);
     }
   }, [navRef.current]);
@@ -34,29 +37,37 @@ export default function NavMenu() {
   return (
     <Container
       ref={navRef}
+      navWidth={navWidth}
       navHeight={navHeight}
       onMouseLeave={() => setHovered("")}
     >
-      {Object.keys(ICONS_FILE).map((imageName, idx) => (
-        <Item
-          key={idx}
-          hovered={hovered === imageName}
-          onMouseOver={() => setHovered(imageName)}
-        >
-          <Image
-            src={require(`../../../../public/image/${ICONS_FILE[imageName]}`)}
-            alt="icon-img"
-          />
-          <FileName>{FirstStrUpper(imageName)}</FileName>
-        </Item>
-      ))}
+      <LeftWindow>Windows 95</LeftWindow>
+      <LiEl>
+        <UlEl>
+          {Object.keys(ICONS_FILE).map((imageName, idx) => (
+            <Item
+              key={idx}
+              hovered={hovered === imageName}
+              onMouseOver={() => setHovered(imageName)}
+            >
+              <Image
+                src={require(`../../../../public/image/${ICONS_FILE[imageName]}`)}
+                alt="icon-img"
+              />
+              <FileName>{FirstStrUpper(imageName)}</FileName>
+            </Item>
+          ))}
+        </UlEl>
+      </LiEl>
+      {/* box-shadow z-index를 위한 */}
+      <BoxShadow navWidth={navWidth} navHeight={navHeight} />
     </Container>
   );
 }
 
-const Container = styled.div<UlHeight>`
+const Container = styled.ul<FlexibleScale>`
   display: grid;
-  grid-template-rows: 30px auto;
+  grid-template-columns: 30px auto;
   position: absolute;
   margin-bottom: 20px;
   font-family: "Microsoft";
@@ -67,7 +78,16 @@ const Container = styled.div<UlHeight>`
     css`
       top: -${props.navHeight}px;
     `}
-  box-shadow: rgb(237, 237, 238) 3px 3px inset, rgba(71, 71, 71) -3px -3px inset;
+`;
+
+const LeftWindow = styled.li`
+  writing-mode: vertical-lr;
+  background-color: #7f8279;
+  padding: 10px 0 10px;
+  transform: rotate(180deg);
+  font-size: 21px;
+  font-weight: bold;
+  color: white;
 `;
 
 const Item = styled.li<HoverItem>`
@@ -75,7 +95,9 @@ const Item = styled.li<HoverItem>`
   align-items: center;
   gap: 10px;
   padding: 5px;
+  padding-right: 30px;
   background-color: ${(props) => props.hovered && "#010081"};
+  color: ${(props) => props.hovered && "white"};
 `;
 
 const FileName = styled.span`
@@ -83,3 +105,21 @@ const FileName = styled.span`
     text-decoration: underline;
   }
 `;
+
+const BoxShadow = styled.li<FlexibleScale>`
+  width: ${(props) => props.navWidth && props.navWidth}px;
+  height: ${(props) => props.navHeight && props.navHeight}px;
+  position: absolute;
+  z-index: 1;
+  box-shadow: rgb(237, 237, 238) 3px 3px inset, rgba(71, 71, 71) -3px -3px inset;
+`;
+
+// 컨텐츠 정렬을 위해 div를 사용할까 하다가
+// li와 ul을 사용하기 위해서 trash El을 씀
+
+// BoxShadow에 의한 hover 가려짐
+const LiEl = styled.li`
+  position: relative;
+  z-index: 2;
+`;
+const UlEl = styled.ul``;
