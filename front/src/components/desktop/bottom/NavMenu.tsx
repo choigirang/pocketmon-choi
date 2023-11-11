@@ -39,34 +39,36 @@ export default function NavMenu() {
   }
 
   return (
-    <Container
-      ref={navRef}
-      navWidth={navWidth}
-      navHeight={navHeight}
-      onMouseLeave={() => setHovered("")}
-    >
-      <LeftWindow>Windows 95</LeftWindow>
-      <LiEl>
-        <UlEl>
-          {Object.keys(ICONS_FILE).map((imageName, idx) => (
-            <Item
-              key={idx}
-              hovered={hovered === imageName}
-              onMouseOver={() => setHovered(imageName)}
-              onClick={() => openWindow(imageName)}
-            >
-              <Image
-                src={require(`../../../../public/image/${ICONS_FILE[imageName]}`)}
-                alt="icon-img"
-              />
-              <FileName>{FirstStrUpper(imageName)}</FileName>
-            </Item>
-          ))}
-        </UlEl>
-      </LiEl>
-      {/* box-shadow z-index를 위한 */}
-      <BoxShadow navWidth={navWidth} navHeight={navHeight} />
-    </Container>
+    <React.Fragment>
+      <Container
+        ref={navRef}
+        $navWidth={navWidth}
+        $navHeight={navHeight}
+        onMouseLeave={() => setHovered("")}
+      >
+        <LeftWindow>Windows 95</LeftWindow>
+        <LiEl>
+          <UlEl>
+            {Object.keys(ICONS_FILE).map((imageName, idx) => (
+              <Item
+                key={idx}
+                $hovered={hovered === imageName}
+                onMouseOver={() => setHovered(imageName)}
+                onClick={() => openWindow(imageName)}
+              >
+                <Image
+                  src={require(`../../../../public/image/${ICONS_FILE[imageName]}`)}
+                  alt="icon-img"
+                />
+                <FileName>{FirstStrUpper(imageName)}</FileName>
+              </Item>
+            ))}
+          </UlEl>
+        </LiEl>
+        {/* box-shadow z-index를 위한 */}
+        <BoxShadow $navWidth={navWidth} $navHeight={navHeight} />
+      </Container>
+    </React.Fragment>
   );
 }
 
@@ -79,9 +81,9 @@ const Container = styled.ul<FlexibleScale>`
   cursor: pointer;
   background-color: var(--base-gray);
   ${(props) =>
-    props.navHeight &&
+    props.$navHeight &&
     css`
-      top: -${props.navHeight}px;
+      top: -${props.$navHeight}px;
     `}
 `;
 
@@ -101,8 +103,8 @@ const Item = styled.li<HoverItem>`
   gap: 10px;
   padding: 5px;
   padding-right: 30px;
-  background-color: ${(props) => props.hovered && "#010081"};
-  color: ${(props) => props.hovered && "white"};
+  background-color: ${(props) => props.$hovered && "#010081"};
+  color: ${(props) => props.$hovered && "white"};
 `;
 
 const FileName = styled.span`
@@ -112,8 +114,8 @@ const FileName = styled.span`
 `;
 
 const BoxShadow = styled.li<FlexibleScale>`
-  width: ${(props) => props.navWidth && props.navWidth}px;
-  height: ${(props) => props.navHeight && props.navHeight}px;
+  width: ${(props) => props.$navWidth && props.$navWidth}px;
+  height: ${(props) => props.$navHeight && props.$navHeight}px;
   position: absolute;
   z-index: 1;
   box-shadow: rgb(237, 237, 238) 3px 3px inset, rgba(71, 71, 71) -3px -3px inset;

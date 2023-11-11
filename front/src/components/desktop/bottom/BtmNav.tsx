@@ -40,7 +40,7 @@ export default function BtmNav({
   return (
     <Container>
       {menuOpen && <NavMenu />}
-      <Btn open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+      <Btn $open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
         <Image src={pixel_logo} alt="" className="pixel-logo" width={30} />
         <span>Start</span>
       </Btn>
@@ -74,7 +74,7 @@ const Btn = styled.div<BtmOpenProps>`
   gap: 5px;
   background-color: #bfbfbf;
   box-shadow: ${(props) =>
-    props.open ? "var(--box-shadow-black)" : "var(--box-shadow-white)"};
+    props.$open ? "var(--box-shadow-black)" : "var(--box-shadow-white)"};
   font-family: "Microsoft";
   font-weight: 500;
   cursor: pointer;

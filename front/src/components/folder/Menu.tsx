@@ -26,7 +26,7 @@ export default function Menu({
         <React.Fragment>
           <MenuItem
             key={idx}
-            hovered={hoverItem === item}
+            $hovered={hoverItem === item}
             onMouseOver={() => setHoverItem(item)}
             onClick={() => setClickItem(item)}
           >
@@ -54,6 +54,6 @@ const MenuItem = styled.li<HoverItem>`
   padding: 2px 5px;
   align-items: center;
   justify-content: center;
-  background: ${(props) => props.hovered && "#020182"};
-  color: ${(props) => props.hovered && "white"};
+  background: ${(props) => props.$hovered && "#020182"};
+  color: ${(props) => props.$hovered && "white"};
 `;

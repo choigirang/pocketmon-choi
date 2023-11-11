@@ -5,23 +5,23 @@ export type TxtData = {
 
 // bottom/BtmNav props
 export type BtmOpenProps = {
-  open: boolean;
+  $open: boolean;
 };
 
 // bottom/NavMenu props
 export type FlexibleScale = {
-  navWidth: number;
-  navHeight: number;
+  $navWidth: number;
+  $navHeight: number;
 };
 
 // IconGrid Item props
 export type ClickIndexProps = {
-  isSelected: boolean;
+  $isSelected: boolean;
 };
 
 // Folder Menu & bottom/NavMenu props
 export type HoverItem = {
-  hovered: boolean;
+  $hovered: boolean;
 };
 
 // Folder PockemonBg props (Common fade effect)
