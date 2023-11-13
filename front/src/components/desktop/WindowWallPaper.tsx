@@ -4,11 +4,10 @@ import Image from "next/image";
 import logo from "../../../public/image/Windows_Logo.svg";
 import BtmNav from "./bottom/BtmNav";
 import IconGrid from "./IconGrid";
+import { useRecoilState } from "recoil";
+import { MenuAtom } from "@/recoil/menuBtn/menuAtom";
 
 export default function WindowWallPaper() {
-  // handle menu barw
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <Container>
       {/* 폴더 */}
@@ -16,7 +15,7 @@ export default function WindowWallPaper() {
       {/* 아이콘 모음 */}
       <IconGrid />
       {/* 하단바 */}
-      <BtmNav menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <BtmNav />
       {/* 배경 */}
       <Bg>
         <Image src={logo} alt="bg-logo" className="logo" />
