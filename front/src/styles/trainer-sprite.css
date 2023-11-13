@@ -1,86 +1,86 @@
 /* 정면 */
 .bg-front {
-  width: 56px;
+  width: 64px;
   height: 64px;
-  background: url("/image/trainer_sprites.png") -86px -178px;
+  background: url("/image/trainer_sprites.png") -94px -94px;
 }
 
 .bg-front1 {
-  width: 56px;
-  height: 60px;
-  background: url("/image/trainer_sprites.png") -258px -98px;
-}
-
-.bg-front2 {
-  width: 56px;
-  height: 60px;
-  background: url("/image/trainer_sprites.png") -178px -98px;
-}
-
-.bg-bike {
-  width: 56px;
+  width: 64px;
   height: 64px;
-  background: url("/image/trainer_sprites.png") -10px -178px;
-}
-
-.bg-bike1 {
-  width: 60px;
-  height: 68px;
-  background: url("/image/trainer_sprites.png") -258px -10px;
-}
-
-.bg-bike2 {
-  width: 60px;
-  height: 68px;
   background: url("/image/trainer_sprites.png") -178px -10px;
 }
 
-/* 좌측 */
-.bg-left {
-  width: 52px;
-  height: 63px;
-  background: url("/image/trainer_sprites.png") -234px -178px;
+.bg-front2 {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -94px -178px;
 }
 
-.bg-left1 {
-  width: 52px;
-  height: 59px;
-  background: url("/image/trainer_sprites.png") -338px -89px;
-}
-
-.bg-left_bike {
+.bg-bike {
   width: 64px;
   height: 64px;
   background: url("/image/trainer_sprites.png") -10px -10px;
 }
 
-.bg-left_bike1 {
+.bg-bike1 {
   width: 64px;
   height: 64px;
   background: url("/image/trainer_sprites.png") -94px -10px;
 }
 
-/* 우측 */
-.bg-right {
-  width: 52px;
-  height: 63px;
-  background: url("/image/trainer_sprites.png") -162px -178px;
-}
-
-.bg-right1 {
-  width: 52px;
-  height: 59px;
-  background: url("/image/trainer_sprites.png") -338px -10px;
-}
-
-.bg-right_bike {
+.bg-bike2 {
   width: 64px;
   height: 64px;
   background: url("/image/trainer_sprites.png") -10px -94px;
 }
 
+/* 좌측 */
+.bg-left {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -262px -10px;
+}
+
+.bg-left1 {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -262px -94px;
+}
+
+.bg-left_bike {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -178px -94px;
+}
+
+.bg-left_bike1 {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -10px -178px;
+}
+
+/* 우측 */
+.bg-right {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -262px -178px;
+}
+
+.bg-right1 {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -94px -262px;
+}
+
+.bg-right_bike {
+  width: 64px;
+  height: 64px;
+  background: url("/image/trainer_sprites.png") -178px -178px;
+}
+
 .bg-right_bike1 {
   width: 64px;
   height: 64px;
-  background: url("/image/trainer_sprites.png") -94px -94px;
+  background: url("/image/trainer_sprites.png") -10px -262px;
 }
