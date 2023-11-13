@@ -11,7 +11,7 @@ import { Fade } from "@/types/props";
 export default function save() {
   const { ref, displayedTxt, fade, handleClick, handleKeyBoard } = useTyping({
     txt: SAVE_DATA,
-    url: "/",
+    url: "/pokemon/data",
   });
 
   return (
@@ -50,6 +50,8 @@ const Container = styled.div<Fade>`
   font-family: "Galmuri14", sans-serif;
   font-size: 50px;
   gap: 20px;
+  transition: all 2s;
+  opacity: ${(prosp) => (prosp.$fade ? 0 : 1)};
 
   .charactor {
     width: 250px;
