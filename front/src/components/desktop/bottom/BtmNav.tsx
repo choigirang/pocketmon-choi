@@ -7,6 +7,7 @@ import NavMenu from "./NavMenu";
 import clock from "img/clock.svg";
 import { useRecoilState } from "recoil";
 import { MenuAtom } from "@/recoil/menuBtn/menuAtom";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function BtmNav() {
   // 시간 설정 Clock
@@ -29,6 +30,8 @@ export default function BtmNav() {
     return () => clearInterval(timerInterval);
   }, []);
 
+  useClickOutside(btnRef, () => setMenuOpen(false));
+
   // 현재 시각 타이머
   function currentTimer() {
     const date = new Date();
@@ -40,7 +43,7 @@ export default function BtmNav() {
   return (
     <Container>
       {menuOpen && <NavMenu />}
-      <Btn $open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+      <Btn $open={menuOpen} onClick={() => setMenuOpen(!menuOpen)} ref={btnRef}>
         <Image src={pixel_logo} alt="" className="pixel-logo" width={30} />
         <span>Start</span>
       </Btn>
