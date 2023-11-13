@@ -18,7 +18,7 @@ export default function WindowWallPaper() {
       <BtmNav />
       {/* 배경 */}
       <Bg>
-        <Image src={logo} alt="bg-logo" className="logo" />
+        <Image src={logo} alt="bg-logo" className="logo" priority />
       </Bg>
     </Container>
   );
@@ -38,10 +38,14 @@ const Bg = styled.div`
   align-items: center;
   justify-content: center;
 
+  .logo {
+  }
+
   @media (min-width: 1200px) {
     /* 데스크톱 */
     .logo {
       max-width: 500px;
+      height: auto;
     }
   }
 
@@ -49,6 +53,7 @@ const Bg = styled.div`
     /* 태블릿*/
     .logo {
       max-width: 400px;
+      height: auto;
     }
   }
 
@@ -56,6 +61,7 @@ const Bg = styled.div`
     /* 모바일 */
     .logo {
       max-width: 300px;
+      height: auto;
     }
   }
 `;
