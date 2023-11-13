@@ -1,20 +1,20 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
 import pixel_logo from "img/window_pixel.svg";
 import { BtmOpenProps } from "@/types/props";
 import NavMenu from "./NavMenu";
 import clock from "img/clock.svg";
+import { useRecoilState } from "recoil";
+import { MenuAtom } from "@/recoil/menuBtn/menuAtom";
 
-export default function BtmNav({
-  menuOpen,
-  setMenuOpen,
-}: {
-  menuOpen: boolean;
-  setMenuOpen: React.Dispatch<SetStateAction<boolean>>;
-}) {
+export default function BtmNav() {
   // 시간 설정 Clock
   const [timer, setTimer] = useState("00:00");
+  // menu open
+  const [menuOpen, setMenuOpen] = useRecoilState(MenuAtom);
+
+  const btnRef = useRef<HTMLDivElement>(null);
 
   // useEffect 없이 함수만으로 setInterval
   // 지정했으나 too many rerender err
