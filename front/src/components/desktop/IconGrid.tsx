@@ -11,6 +11,7 @@ import { ICONS_FILE } from "@/constant/constant";
 import useRemoverExtension from "../../hooks/useRemoverExtension";
 import { useChangeIconBg } from "@/hooks/useChangeIconBg";
 import useOpenWindow from "@/hooks/useOpenWindow";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function IconGrid() {
   // 클릭한 아이콘을 위한 훅
@@ -24,25 +25,7 @@ export default function IconGrid() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as HTMLDivElement)
-      ) {
-        // 컨테이너 외부를 클릭하면 changeBg를 undefined로 설정
-        changeClick(undefined);
-      }
-    };
-
-    // 이벤트 리스너를 등록합니다.
-    document.addEventListener("click", handleClickOutside);
-
-    // 컴포넌트 언마운트 시 이벤트 리스너를 정리합니다.
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, [changeClick]);
+  useClickOutside(containerRef, () => changeClick(undefined));
 
   return (
     <Container ref={containerRef}>
