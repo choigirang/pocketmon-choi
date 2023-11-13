@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { styled } from "styled-components";
 import Image from "next/image";
 import { ICONS_FILE } from "@/constant/constant";
@@ -16,8 +22,30 @@ export default function IconGrid() {
   // loadFolder로 DATA와 DATA에 맞는 주소로 이동하는 훅
   const loadFolder = useOpenWindow(ICONS_FILE);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as HTMLDivElement)
+      ) {
+        // 컨테이너 외부를 클릭하면 changeBg를 undefined로 설정
+        changeClick(undefined);
+      }
+    };
+
+    // 이벤트 리스너를 등록합니다.
+    document.addEventListener("click", handleClickOutside);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너를 정리합니다.
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [changeClick]);
+
   return (
-    <Container>
+    <Container ref={containerRef}>
       <ItemBox>
         {/* 이미지 추가될 때마다 public/image 에서 png 가져오기 */}
         {Object.keys(ICONS_FILE).map((imageName, index) => (
