@@ -7,38 +7,43 @@ const movePoint = {
   right: 0,
 };
 
+const eachMoveClass = {
+  ArrowUp: {},
+};
+
+type MoveDirection = {
+  x?: number;
+  y?: number;
+};
+
 export default function useMoveClass() {
   const [character, setCharacter] = useState({ x: 0, y: 0 });
   const [moveClass, setMoveClass] = useState("bg-front");
 
-  const handleSetMoveClass = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "ArrowDown") {
-      setMoveClass("bg-front");
+  const handleMove = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const { key } = e;
+
+    const moveDirections: { [key: string]: MoveDirection } = {
+      ArrowUp: { y: -64 },
+      ArrowDown: { y: 64 },
+      ArrowLeft: { x: -64 },
+      ArrowRight: { x: 64 },
+    };
+
+    const direction = moveDirections[key];
+    if (direction) {
+      const { x, y } = direction;
+      const newX = character.x + x;
+      const newY = character.y + y;
+
+      if (isValidMove(newX, newY)) {
+        setCharacter({ ...character, x: newX, y: newY });
+      }
     }
   };
 
-  const handleMove = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "ArrowUp") {
-      const newY = character.y - 64;
-      if (newY >= 0) {
-        setCharacter({ ...character, y: newY });
-      }
-    } else if (e.key === "ArrowDown") {
-      const newY = character.y + 64;
-      if (newY + 100 <= 700) {
-        setCharacter({ ...character, y: newY });
-      }
-    } else if (e.key === "ArrowLeft") {
-      const newX = character.x - 64;
-      if (newX >= 0) {
-        setCharacter({ ...character, x: newX });
-      }
-    } else if (e.key === "ArrowRight") {
-      const newX = character.x + 64;
-      if (newX + 60 <= 865) {
-        setCharacter({ ...character, x: newX });
-      }
-    }
+  const isValidMove = (newX: number, newY: number) => {
+    return newX >= 0 && newX + 60 <= 865 && newY >= 0 && newY + 100 <= 700;
   };
 
   return { character, moveClass, handleMove };
