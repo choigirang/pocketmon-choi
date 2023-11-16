@@ -6,14 +6,14 @@ import { BtmOpenProps } from "@/types/props";
 import NavMenu from "./NavMenu";
 import clock from "img/clock.svg";
 import { useRecoilState } from "recoil";
-import { MenuAtom } from "@/recoil/menuBtn/menuAtom";
+import { NavAtom } from "@/recoil/menuBtn/menuAtom";
 import useClickOutside from "@/hooks/useClickOutside";
 
 export default function BtmNav() {
   // 시간 설정 Clock
   const [timer, setTimer] = useState("00:00");
   // menu open
-  const [menuOpen, setMenuOpen] = useRecoilState(MenuAtom);
+  const [menuOpen, setMenuOpen] = useRecoilState(NavAtom);
 
   const btnRef = useRef<HTMLDivElement>(null);
 
