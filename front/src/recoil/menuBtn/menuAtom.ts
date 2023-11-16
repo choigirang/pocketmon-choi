@@ -1,14 +1,14 @@
 import { atom, selector } from "recoil";
 
-export const MenuAtom = atom({
+export const NavAtom = atom({
   key: "NavAtom",
   default: false,
 });
 
-export const navState = selector({
-  key: "navState",
+export const NavState = selector({
+  key: "NavState",
   get: ({ get }) => {
-    const nav = get(MenuAtom);
+    const nav = get(NavAtom);
     return nav;
   },
 });
