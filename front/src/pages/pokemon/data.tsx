@@ -15,6 +15,7 @@ export default function data() {
       switch (key) {
         case "i":
           setStatus({ ...status, ITEM: !status.ITEM });
+          console.log(status);
           break;
         case "s":
           setStatus({ ...status, STATUS: !status.STATUS });
@@ -31,6 +32,12 @@ export default function data() {
       document.removeEventListener("keydown", handleKeyboardWindow);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(status.ITEM);
+  }, [status.ITEM]);
+
+  console.log(status.ITEM);
 
   return (
     <Container>

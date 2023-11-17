@@ -3,7 +3,7 @@ import { atom, selector } from "recoil";
 export const CharacterAtom = atom({
   key: "CharacterAtom",
   default: {
-    ITEM: false,
+    ITEM: true,
     STATUS: false,
   },
 });
