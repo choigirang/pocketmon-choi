@@ -4,7 +4,7 @@ import PartTwoStory from "../../components/story/PartTwoStory";
 import { useRecoilState } from "recoil";
 import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
 import ItemOpen from "@/components/story/character/ItemOpen";
-import StatusOpen from "@/components/story/character/\bStatusOpen";
+import StatusOpen from "@/components/story/character/StatusOpen";
 
 export default function data() {
   const [status, setStatus] = useRecoilState(CharacterAtom);
