@@ -1,77 +1,43 @@
-import React, { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+// useDrag 훅
 export default function useDrag() {
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const dragComponentRef = useRef<HTMLDivElement>(null);
-  const [originPos, setOriginPos] = useState({ x: 0, y: 0 });
-  const [clientPos, setClientPos] = useState({ x: 0, y: 0 });
-  const [pos, setPos] = useState({ left: 0, top: 0 });
 
-  const dragStartHandler = (e: any) => {
-    const blankCanvas: any = document.createElement("canvas");
-    blankCanvas.classList.add("canvas");
-    e.dataTransfer?.setDragImage(blankCanvas, 0, 0);
-    document.body?.appendChild(blankCanvas);
-    e.dataTransfer.effectAllowed = "move";
-
-    const originPosTemp = { ...originPos };
-    originPosTemp["x"] = e.target.offsetLeft;
-    originPosTemp["y"] = e.target.offsetTop;
-    console.log("originPropsTemp", originPosTemp);
-    setOriginPos(originPosTemp);
-
-    const clientPosTemp = { ...clientPos };
-    clientPosTemp["x"] = e.clientX;
-    clientPosTemp["y"] = e.clientY;
-    setClientPos(clientPosTemp);
+  const dragStart = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setStartPos({
+      x: e.clientX - (containerRef.current?.getBoundingClientRect().left || 0),
+      y: e.clientY - (containerRef.current?.getBoundingClientRect().top || 0),
+    });
   };
 
-  const dragHandler = (e: any) => {
-    const posTemp = { ...pos };
-    posTemp["left"] = e.target.offsetLeft + e.clientX - clientPos.x;
-    posTemp["top"] = e.target.offsetTop + e.clientY - clientPos.y;
-    setPos(posTemp);
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging && containerRef.current) {
+        const x = e.clientX - startPos.x;
+        const y = e.clientY - startPos.y;
+        containerRef.current.style.left = `${x}px`;
+        containerRef.current.style.top = `${y}px`;
+      }
+    };
 
-    const clientPosTemp = { ...clientPos };
-    clientPosTemp["x"] = e.clientX;
-    clientPosTemp["y"] = e.clientY;
-    setClientPos(clientPosTemp);
-  };
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
 
-  const dragOverHandler = (e: any) => {
-    e.preventDefault();
-  };
-
-  const dragEndHandler = (e: any) => {
-    if (!isInsideDragArea(e)) {
-      const posTemp = { ...pos };
-      posTemp["left"] = originPos.x;
-      posTemp["top"] = originPos.y;
-      setPos(posTemp);
+    if (isDragging) {
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     }
 
-    const canvases = document.getElementsByClassName("canvas");
-    for (let i = 0; i < canvases.length; i++) {
-      let canvas = canvases[i];
-      canvas.parentNode?.removeChild(canvas);
-    }
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging, startPos]);
 
-    document.body.removeAttribute("style");
-  };
-
-  const isInsideDragArea = (e: any) => {
-    if (e.target.clientX < 800 || e.target.clientY < 600) {
-      return true;
-    }
-  };
-
-  return {
-    containerRef,
-    dragComponentRef,
-    pos,
-    dragStartHandler,
-    dragHandler,
-    dragOverHandler,
-    dragEndHandler,
-  };
+  return { containerRef, movePos: startPos, dragStart };
 }
