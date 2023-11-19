@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
 import ItemOpen from "./character/ItemOpen";
+import { CharacterPos } from "@/types/props";
 
 export default function PartTwoStory() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,8 @@ export default function PartTwoStory() {
       <Character
         tabIndex={0}
         onKeyDown={handleMove}
-        style={{ top: `${character.y}px`, left: `${character.x}px` }}
+        left={character.x}
+        top={character.y}
         ref={characterRef}
         className={moveClass}
       />
@@ -62,6 +64,8 @@ const Bg = styled.div`
   background-image: url("/image/bg-home.png");
 `;
 
-const Character = styled.div`
+const Character = styled.div<CharacterPos>`
   position: absolute;
+  left: ${(props) => `${props.left}px`};
+  top: ${(props) => `${props.top}px`};
 `;
