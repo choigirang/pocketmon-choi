@@ -37,5 +37,10 @@ export type CharacterPos = {
 
 // story/character/ItemOpen
 export type PosProps = {
-  pos: string;
+  $pos: {
+    left: number;
+    right: number;
+    top: number;
+    bottom: number;
+  };
 };
