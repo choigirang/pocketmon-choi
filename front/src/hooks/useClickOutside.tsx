@@ -13,11 +13,8 @@ function useClickOutside(
         callback();
       }
     };
-
-    // 이벤트 리스너를 등록합니다.
     document.addEventListener("click", handleClickOutside);
 
-    // 컴포넌트 언마운트 시 이벤트 리스너를 정리합니다.
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
