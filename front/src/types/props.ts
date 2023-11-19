@@ -28,3 +28,14 @@ export type HoverItem = {
 export type Fade = {
   $fade: boolean;
 };
+
+// story/PartTwoStory
+export type CharacterPos = {
+  left: number;
+  top: number;
+};
+
+// story/character/ItemOpen
+export type PosProps = {
+  pos: string;
+};
