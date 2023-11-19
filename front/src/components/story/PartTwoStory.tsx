@@ -6,6 +6,7 @@ import { styled } from "styled-components";
 import ItemOpen from "./character/ItemOpen";
 
 export default function PartTwoStory() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const characterRef = useRef<HTMLDivElement>(null);
 
   const { moveClass, character, handleMove } = useMoveClass();
@@ -35,18 +36,13 @@ export default function PartTwoStory() {
 
     document.addEventListener("keydown", handleKeyboardWindow);
 
-    // 컴포넌트 언마운트 시 이벤트 리스너를 정리합니다.
     return () => {
       document.removeEventListener("keydown", handleKeyboardWindow);
     };
   }, []);
 
-  useEffect(() => {
-    console.log(status.ITEM);
-  }, [status.ITEM]);
-
   return (
-    <Bg>
+    <Bg ref={containerRef}>
       <Character
         tabIndex={0}
         onKeyDown={handleMove}
@@ -54,7 +50,7 @@ export default function PartTwoStory() {
         ref={characterRef}
         className={moveClass}
       />
-      {status.ITEM && <ItemOpen />}
+      {status.ITEM && <ItemOpen size={containerRef} />}
     </Bg>
   );
 }
