@@ -8,13 +8,15 @@ export default function ItemOpen({
 }: {
   size: React.RefObject<HTMLDivElement>;
 }) {
-  const [pos, setPos] = useState<string>("");
   const { containerRef, movePos, dragStart } = useDrag(size);
 
+  console.log(movePos);
   return (
-    <Container ref={containerRef} onMouseDown={(e) => dragStart(e)} pos={pos}>
-      <Drag></Drag>
-    </Container>
+    <Container
+      ref={containerRef}
+      onMouseDown={(e) => dragStart(e)}
+      $pos={movePos}
+    ></Container>
   );
 }
 
@@ -24,9 +26,24 @@ const Container = styled.div<PosProps>`
   height: 300px;
   z-index: 2;
   background-color: white;
-`;
+  left: ${(props) => props.$pos.left + "px"};
+  top: ${(props) => props.$pos.top + "px"};
+  /* ${(props) => {
+    const pos = props.$pos;
 
-const Drag = styled.div`
-  width: 100%;
-  height: 100%;
+    // parent bottom size over
+    if (pos.bottom) {
+      console.log("css parent bottom over");
+
+      return `left: ${pos.left}px; bottom: 0`;
+    }
+
+    // parent right size over
+    if (pos.right) {
+      console.log("css parent right over");
+      return `top: ${pos.top}px; right: 0px`;
+    }
+
+    return `left: ${pos.left}px; top: ${pos.top}px`;
+  }} */
 `;
