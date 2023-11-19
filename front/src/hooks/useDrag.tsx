@@ -1,26 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 
-// useDrag 훅
 export default function useDrag() {
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [movePos, setMovePos] = useState({ left: 0, top: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const dragStart = (e: React.MouseEvent) => {
     setIsDragging(true);
     setStartPos({
-      x: e.clientX - (containerRef.current?.getBoundingClientRect().left || 0),
-      y: e.clientY - (containerRef.current?.getBoundingClientRect().top || 0),
+      x: e.clientX,
+      y: e.clientY,
     });
   };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (isDragging && containerRef.current) {
-        const x = e.clientX - startPos.x;
-        const y = e.clientY - startPos.y;
-        containerRef.current.style.left = `${x}px`;
-        containerRef.current.style.top = `${y}px`;
+      if (containerRef.current) {
+        const left = e.clientX - startPos.x;
+        const top = e.clientY - startPos.y;
+        setMovePos({ left, top });
       }
     };
 
@@ -39,5 +38,5 @@ export default function useDrag() {
     };
   }, [isDragging, startPos]);
 
-  return { containerRef, movePos: startPos, dragStart };
+  return { containerRef, movePos, dragStart };
 }
