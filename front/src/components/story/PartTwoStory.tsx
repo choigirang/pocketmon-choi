@@ -13,9 +13,8 @@ export default function PartTwoStory() {
   const { moveClass, character, handleMove } = useMoveClass();
 
   useEffect(() => {
-    // 컴포넌트가 마운트될 때 포커스를 설정합니다.
     characterRef.current?.focus();
-  }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때만 실행됩니다.
+  }, []);
 
   const [status, setStatus] = useRecoilState(CharacterAtom);
 
