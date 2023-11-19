@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export default function useDrag() {
+export default function useDrag(size: React.RefObject<HTMLDivElement>) {
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-  const [movePos, setMovePos] = useState({ left: 0, top: 0 });
+  const [movePos, setMovePos] = useState({
+    left: 0,
+    top: 0,
+    right: false,
+    bottom: false,
+  });
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -19,7 +24,7 @@ export default function useDrag() {
       if (containerRef.current) {
         const left = e.clientX - startPos.x;
         const top = e.clientY - startPos.y;
-        setMovePos({ left, top });
+        setMovePos((prev) => ({ ...prev, left, top }));
       }
     };
 
