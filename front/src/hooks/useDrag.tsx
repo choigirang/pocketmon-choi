@@ -17,8 +17,8 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
   const dragStart = (e: React.MouseEvent) => {
     setIsDragging(true);
     setStartPos({
-      x: e.clientX,
-      y: e.clientY,
+      x: e.clientX - movePos.left,
+      y: e.clientY - movePos.top,
     });
   };
 
@@ -28,39 +28,11 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
         const left = e.clientX - startPos.x;
         const top = e.clientY - startPos.y;
 
-        console.log(left, top);
         setMovePos((prev) => ({
           ...prev,
-          left: prev.left + left,
-          top: prev.top + top,
+          left: left,
+          top: top,
         }));
-
-        // // parent size over
-        // if (!checkChildRefSize || !checkParentRefSize) return;
-
-        // // parent bottom size over
-        // if (checkChildRefSize.bottom < checkParentRefSize.bottom) {
-        //   setMovePos((prev) => ({ ...prev, bottom: 0 }));
-        // } else {
-        //   setMovePos((prev) => ({ ...prev, bottom: 1 }));
-        // }
-
-        // // parent right size over
-        // if (checkChildRefSize.right < checkParentRefSize.right) {
-        //   setMovePos((prev) => ({ ...prev, top: 0 }));
-        // } else {
-        //   setMovePos((prev) => ({ ...prev, top: 1 }));
-        // }
-
-        // // parent top size over
-        // if (checkChildRefSize.top > checkParentRefSize.top) {
-        //   setMovePos((prev) => ({ ...prev, top: 0 }));
-        // }
-
-        // // parent left size over
-        // if (checkChildRefSize.left > checkParentRefSize.left) {
-        //   setMovePos((prev) => ({ ...prev, left: 0 }));
-        // }
       }
     };
 
