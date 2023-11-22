@@ -4,11 +4,11 @@ import useDrag from "../../../hooks/useDrag";
 import { PosProps } from "@/types/props";
 
 export default function ItemOpen({
-  size,
+  parentRef,
 }: {
-  size: React.RefObject<HTMLDivElement>;
+  parentRef: React.RefObject<HTMLDivElement>;
 }) {
-  const { containerRef, movePos, dragStart } = useDrag(size);
+  const { containerRef, movePos, dragStart } = useDrag(parentRef);
 
   return (
     <Container
