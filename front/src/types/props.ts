@@ -31,8 +31,8 @@ export type Fade = {
 
 // story/PartTwoStory
 export type CharacterPos = {
-  left: number;
-  top: number;
+  $left: number;
+  $top: number;
 };
 
 // story/character/ItemOpen
@@ -43,4 +43,11 @@ export type PosProps = {
     top: number;
     bottom: number;
   };
+};
+
+// pages/pokemon/data
+export type dataPageProps = {
+  status: { ITEM: boolean; STATUS: boolean };
+  moveClass: string;
+  character: { x: number; y: number };
 };
