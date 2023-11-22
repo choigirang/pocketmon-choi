@@ -3,13 +3,13 @@ import { atom, selector } from "recoil";
 export const CharacterAtom = atom({
   key: "CharacterAtom",
   default: {
-    ITEM: true,
+    ITEM: false,
     STATUS: false,
   },
 });
 
 export const AboutCharacter = selector({
-  key: "AboutCharacter",
+  key: "AboutCharacterSelector",
   get: ({ get }) => {
     const character = get(CharacterAtom);
     return character;
