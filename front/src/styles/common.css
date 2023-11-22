@@ -24,3 +24,7 @@
   --font-9: "Galmuri9", sans-serif;
   --font-7: "Galmuri7", sans-serif;
 }
+
+div:focus {
+  outline: none;
+}
