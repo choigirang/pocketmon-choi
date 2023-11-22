@@ -23,17 +23,35 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
   };
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current) {
-        const left = e.clientX - startPos.x;
-        const top = e.clientY - startPos.y;
+    if (!checkChildRefSize || !checkParentRefSize) return;
 
-        setMovePos((prev) => ({
-          ...prev,
-          left: left,
-          top: top,
-        }));
-      }
+    // y축 벗어났을 때
+    if (checkChildRefSize.top < checkParentRefSize.top) {
+      setMovePos((prev) => ({ ...prev, top: 0 }));
+    }
+    if (checkChildRefSize.bottom > checkParentRefSize.bottom) {
+      const reSize = checkParentRefSize.bottom - checkChildRefSize.bottom;
+      setMovePos((prev) => ({ ...prev, top: prev.top + reSize }));
+    }
+
+    // x축 벗어났을 때
+    if (checkChildRefSize.left < checkParentRefSize.top) {
+      setMovePos((prev) => ({ ...prev, left: 0 }));
+    }
+    if (checkChildRefSize.right > checkParentRefSize.right) {
+      const reSize = checkParentRefSize.right - checkChildRefSize.right;
+      setMovePos((prev) => ({ ...prev, left: prev.left + reSize }));
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const left = e.clientX - startPos.x;
+      const top = e.clientY - startPos.y;
+
+      setMovePos((prev) => ({
+        ...prev,
+        left: left,
+        top: top,
+      }));
     };
 
     const handleMouseUp = () => {
