@@ -1,4 +1,6 @@
+import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
 import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 
 const movePoint = {
   front: 0,
@@ -19,9 +21,21 @@ type MoveDirection = {
 export default function useMoveClass() {
   const [character, setCharacter] = useState({ x: 0, y: 0 });
   const [moveClass, setMoveClass] = useState("bg-front");
+  const [status, setStatus] = useRecoilState(CharacterAtom);
 
-  const handleMove = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const { key } = e;
+
+    switch (key) {
+      case "i":
+        setStatus((prev) => ({ ...prev, ITEM: !prev.ITEM }));
+        break;
+      case "s":
+        setStatus((prev) => ({ ...prev, STATUS: !prev.STATUS }));
+        break;
+      default:
+        break;
+    }
 
     const moveDirections: { [key: string]: MoveDirection } = {
       ArrowUp: { y: -64 },
@@ -33,6 +47,8 @@ export default function useMoveClass() {
     const direction = moveDirections[key];
     if (direction) {
       const { x, y } = direction;
+
+      if (!x || !y) return;
       const newX = character.x + x;
       const newY = character.y + y;
 
@@ -46,5 +62,5 @@ export default function useMoveClass() {
     return newX >= 0 && newX + 60 <= 865 && newY >= 0 && newY + 100 <= 700;
   };
 
-  return { character, moveClass, handleMove };
+  return { status, character, moveClass, handleKey };
 }
