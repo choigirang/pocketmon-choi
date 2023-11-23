@@ -43,11 +43,17 @@ export type PosProps = {
     top: number;
     bottom: number;
   };
+  $status: CharacterAtomType;
 };
+
+interface CharacterAtomType {
+  ITEM: boolean;
+  STATUS: boolean;
+}
 
 // pages/pokemon/data
 export type dataPageProps = {
-  status: { ITEM: boolean; STATUS: boolean };
+  status: CharacterAtomType;
   moveClass: string;
   character: { x: number; y: number };
 };
