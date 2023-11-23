@@ -7,60 +7,37 @@ import React, {
 } from "react";
 import { styled } from "styled-components";
 import useDrag from "../../../hooks/useDrag";
-import { PosProps } from "@/types/props";
-import { useRecoilValue } from "recoil";
-import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
+import { ItemOpenProps, PosProps } from "@/types/props";
 import { BACK_PACK } from "@/constant/constant";
 import { MdArrowRight } from "react-icons/md";
+import { lightAni } from "@/styles/animation";
+import useHandleDataPage from "@/hooks/useHandleDataPage";
 
 export default function ItemOpen({
   parentRef,
-}: {
-  parentRef: React.RefObject<HTMLDivElement>;
-}) {
-  const [selectArrow, setSelectArrow] = useState(0);
-  const status = useRecoilValue(CharacterAtom);
-
-  const liRef = useRef<HTMLLIElement>(null);
-  const { containerRef, movePos, dragStart } = useDrag(parentRef);
-
-  const handleArrow = (e: KeyboardEvent) => {
-    console.log(1);
-    if (
-      Object.keys(BACK_PACK).length < selectArrow ||
-      Object.keys(BACK_PACK).length > selectArrow
-    ) {
-      switch (e.key) {
-        case "ArrowDown":
-          setSelectArrow((prev) => prev++);
-          break;
-        case "ArrowUp":
-          setSelectArrow((prev) => prev--);
-          break;
-        default:
-          break;
-      }
-    }
-  };
-
-  useEffect(() => {
-    containerRef.current?.hidden;
-  }, [status]);
+  selectNum,
+  $status,
+}: ItemOpenProps) {
+  const { containerRef, movePos, dragStart, dragEnd } = useDrag(parentRef);
 
   return (
     <Container
       ref={containerRef}
       onMouseDown={dragStart}
+      onDragEnd={dragEnd}
       $pos={movePos}
-      $status={status}
-      onKeyDown={handleArrow}
+      $status={$status}
+      draggable
     >
       <BackPack>
+        <Title>가방</Title>
         {Object.keys(BACK_PACK).map((skill, idx) => (
-          <li key={idx} ref={liRef}>
-            {selectArrow === idx && <MdArrowRight className="icon" />}
+          <Item key={idx}>
+            {selectNum === idx && (
+              <MdArrowRight className="icon"></MdArrowRight>
+            )}
             {skill}
-          </li>
+          </Item>
         ))}
       </BackPack>
     </Container>
@@ -84,8 +61,29 @@ const Container = styled.div<PosProps>`
 const BackPack = styled.ul`
   width: 100%;
   height: 100%;
-  padding: 5px;
+  padding: 10px;
   border: solid 4px black;
   border-radius: 10px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+
+  .icon {
+    animation: ${lightAni} 1s infinite;
+  }
+`;
+
+const Title = styled.li`
+  font-family: var(--font-14);
+  font-size: 25px;
+  font-weight: bolder;
+  -webkit-text-stroke: 0.5px black;
+`;
+
+const Item = styled.li`
+  font-family: var(--font-14);
+  font-size: 21px;
+  padding-left: 10px;
 `;
