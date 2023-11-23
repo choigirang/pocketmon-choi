@@ -16,7 +16,7 @@ export default function PartTwoStory({
   return (
     <Bg ref={parentRef}>
       <Character $left={character.x} $top={character.y} className={moveClass} />
-      {status.ITEM && <ItemOpen parentRef={parentRef} />}
+      <ItemOpen parentRef={parentRef} />
     </Bg>
   );
 }
