@@ -1,5 +1,6 @@
 // 대사
 export type Script = Record<number, string>;
+export type StrScript = Record<string, string>;
 
 // 아이콘 태그
 export type IconNames = Record<string, string>;
@@ -24,4 +25,12 @@ export const SAVE_DATA: Script = {
 export const ICONS_FILE: IconNames = {
   computer: "My-Computer.png",
   pokemon: "Pokemon.png",
+};
+
+// character/ItemOpen
+export const BACK_PACK: StrScript = {
+  React: "asd",
+  TypeScript: "asg",
+  StyledComponents: "asg",
+  Nextjs: "asg",
 };
