@@ -1,7 +1,7 @@
-import useMoveClass from "@/hooks/useMoveClass";
+import useMoveClass from "@/hooks/useHandleDataPage";
 import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
 import React, { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { styled } from "styled-components";
 import ItemOpen from "./character/ItemOpen";
 import { CharacterPos, dataPageProps } from "@/types/props";
@@ -9,6 +9,7 @@ import { CharacterPos, dataPageProps } from "@/types/props";
 export default function PartTwoStory({
   status,
   character,
+  selectNum,
   moveClass,
 }: dataPageProps) {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -16,7 +17,13 @@ export default function PartTwoStory({
   return (
     <Bg ref={parentRef}>
       <Character $left={character.x} $top={character.y} className={moveClass} />
-      <ItemOpen parentRef={parentRef} />
+      {status.ITEM && (
+        <ItemOpen
+          parentRef={parentRef}
+          selectNum={selectNum}
+          $status={status}
+        />
+      )}
     </Bg>
   );
 }
