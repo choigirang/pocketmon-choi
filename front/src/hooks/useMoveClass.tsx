@@ -19,12 +19,47 @@ type MoveDirection = {
 };
 
 export default function useMoveClass() {
-  const [character, setCharacter] = useState({ x: 0, y: 0 });
+  const [character, setCharacter] = useState({ x: 0, y: 96 });
   const [moveClass, setMoveClass] = useState("bg-front");
   const [status, setStatus] = useRecoilState(CharacterAtom);
 
+  const arrowMove = (key: string) => {
+    switch (key) {
+      case "ArrowUp":
+        setMoveClass(moveClass !== "bg-back" ? "bg-back" : "bg-back1");
+        if (character.x >= 0 && character.x <= 352 && character.y === 96) {
+          return;
+        }
+        if (character.x >= 384 && character.y === 32) {
+          return;
+        }
+        setCharacter((prev) => ({ ...prev, y: prev.y - 32 }));
+        break;
+      case "ArrowDown":
+        setMoveClass(moveClass !== "bg-front" ? "bg-front" : "bg-front1");
+        if (character.y >= 512) return;
+        setCharacter((prev) => ({ ...prev, y: prev.y + 32 }));
+        break;
+      case "ArrowLeft":
+        setMoveClass(moveClass !== "bg-left" ? "bg-left" : "bg-left1");
+        if (character.x === 0) return;
+        if (character.x === 384 && character.y < 96) return;
+        setCharacter((prev) => ({ ...prev, x: prev.x - 32 }));
+        break;
+      case "ArrowRight":
+        setMoveClass(moveClass !== "bg-right" ? "bg-right" : "bg-right1");
+        if (character.x === 736) return;
+        setCharacter((prev) => ({ ...prev, x: prev.x + 32 }));
+        break;
+      default:
+        break;
+    }
+  };
+
   const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const { key } = e;
+
+    arrowMove(key);
 
     switch (key) {
       case "i":
@@ -36,30 +71,6 @@ export default function useMoveClass() {
       default:
         break;
     }
-
-    const moveDirections: { [key: string]: MoveDirection } = {
-      ArrowUp: { y: -64 },
-      ArrowDown: { y: 64 },
-      ArrowLeft: { x: -64 },
-      ArrowRight: { x: 64 },
-    };
-
-    const direction = moveDirections[key];
-    if (direction) {
-      const { x, y } = direction;
-
-      if (!x || !y) return;
-      const newX = character.x + x;
-      const newY = character.y + y;
-
-      if (isValidMove(newX, newY)) {
-        setCharacter({ ...character, x: newX, y: newY });
-      }
-    }
-  };
-
-  const isValidMove = (newX: number, newY: number) => {
-    return newX >= 0 && newX + 60 <= 865 && newY >= 0 && newY + 100 <= 700;
   };
 
   return { status, character, moveClass, handleKey };
