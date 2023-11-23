@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { DragEvent, useEffect, useRef, useState } from "react";
 
 export default function useDrag(size: React.RefObject<HTMLDivElement>) {
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
@@ -22,6 +22,19 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
     });
   };
 
+  const dragEnd = (e: DragEvent) => {
+    const left = e.clientX - startPos.x;
+    const top = e.clientY - startPos.y;
+
+    setMovePos((prev) => ({
+      ...prev,
+      left: left,
+      top: top,
+    }));
+    setIsDragging(false);
+    console.log(1);
+  };
+
   useEffect(() => {
     if (!checkChildRefSize || !checkParentRefSize) return;
 
@@ -42,32 +55,7 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
       const reSize = checkParentRefSize.right - checkChildRefSize.right;
       setMovePos((prev) => ({ ...prev, left: prev.left + reSize }));
     }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const left = e.clientX - startPos.x;
-      const top = e.clientY - startPos.y;
-
-      setMovePos((prev) => ({
-        ...prev,
-        left: left,
-        top: top,
-      }));
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
   }, [isDragging, startPos]);
 
-  return { containerRef, movePos, dragStart };
+  return { containerRef, movePos, dragStart, dragEnd };
 }
