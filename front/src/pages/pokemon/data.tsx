@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import PartTwoStory from "../../components/story/PartTwoStory";
-import useMoveClass from "@/hooks/useMoveClass";
+import useHandleDataPage from "@/hooks/useHandleDataPage";
+import { BACK_PACK } from "@/constant/constant";
 
 export default function data() {
   const focusRef = useRef<HTMLDivElement>(null);
 
-  const { status, moveClass, character, handleKey } = useMoveClass();
+  const { selectNum, status, moveClass, character, handleKey, handleArrow } =
+    useHandleDataPage();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -15,11 +17,19 @@ export default function data() {
   }, []);
 
   return (
-    <Container onKeyDown={handleKey} ref={focusRef} tabIndex={0}>
+    <Container
+      onKeyDown={(e) => {
+        handleKey(e);
+        status.ITEM && handleArrow(BACK_PACK, e);
+      }}
+      ref={focusRef}
+      tabIndex={0}
+    >
       <PartTwoStory
         status={status}
         moveClass={moveClass}
         character={character}
+        selectNum={selectNum}
       />
     </Container>
   );
