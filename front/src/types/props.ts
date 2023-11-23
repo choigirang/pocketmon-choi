@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 // useTyping
 export type TxtData = {
   [key: string | number]: string;
@@ -35,6 +37,13 @@ export type CharacterPos = {
   $top: number;
 };
 
+// story/PartTwoStory/ItemOpen
+export type ItemOpenProps = {
+  parentRef: React.RefObject<HTMLDivElement>;
+  selectNum: number;
+  $status: CharacterAtomType;
+};
+
 // story/character/ItemOpen
 export type PosProps = {
   $pos: {
@@ -54,6 +63,7 @@ interface CharacterAtomType {
 // pages/pokemon/data
 export type dataPageProps = {
   status: CharacterAtomType;
+  selectNum: number;
   moveClass: string;
   character: { x: number; y: number };
 };
