@@ -22,7 +22,8 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
     });
   };
 
-  const dragEnd = (e: DragEvent) => {
+  // dragEnd에서 설정해주기
+  const dragEnd = (e: React.MouseEvent) => {
     const left = e.clientX - startPos.x;
     const top = e.clientY - startPos.y;
 
@@ -31,14 +32,8 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
       left: left,
       top: top,
     }));
-    setIsDragging(false);
-    console.log(1);
-  };
-
-  useEffect(() => {
     if (!checkChildRefSize || !checkParentRefSize) return;
 
-    // y축 벗어났을 때
     if (checkChildRefSize.top < checkParentRefSize.top) {
       setMovePos((prev) => ({ ...prev, top: 0 }));
     }
@@ -55,7 +50,8 @@ export default function useDrag(size: React.RefObject<HTMLDivElement>) {
       const reSize = checkParentRefSize.right - checkChildRefSize.right;
       setMovePos((prev) => ({ ...prev, left: prev.left + reSize }));
     }
-  }, [isDragging, startPos]);
+    setIsDragging(false);
+  };
 
   return { containerRef, movePos, dragStart, dragEnd };
 }
