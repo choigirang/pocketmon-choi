@@ -1,5 +1,6 @@
 import { StrScript } from "@/constant/constant";
 import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
+import { SelectDataAtom } from "@/recoil/openAboutCharacter/selectDataAtom";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
@@ -18,6 +19,9 @@ export default function useHandleDataPage() {
 
   // 아이템 & 스탯창 open 상태값
   const [status, setStatus] = useRecoilState(CharacterAtom);
+
+  // 아이템 선택
+  const [data, setData] = useRecoilState(SelectDataAtom);
 
   // 이동 방향과 좌표값 변경
   const moveCharacter = (direction: MoveDirection) => {
