@@ -29,8 +29,11 @@ export const ICONS_FILE: IconNames = {
 
 // character/ItemOpen
 export const BACK_PACK: StrScript = {
-  React: "asd",
-  TypeScript: "asg",
-  StyledComponents: "asg",
-  Nextjs: "asg",
+  React:
+    "웹 프레임워크로, 자바스크립트 라이브러리의 하나로서 사용자 인터페이스를 만들기 위해 사용된다.",
+  TypeScript:
+    "코드에 목적을 명시하고 목적에 맞지 않는 타입의 변수나 함수들에서 에러를 발생시켜 버그를 사전에 제거한다.",
+  StyledComponents:
+    "기존 돔을 만드는 방식인 css, scss 파일을 밖에 두고, 태그나 id, class이름으로 가져와 쓰지 않고, 동일한 컴포넌트에서 컴포넌트 이름을 쓰듯 스타일을 지정한다.",
+  Nextjs: "React로 만드는 서버사이드 렌더링 프레인 워크이다.",
 };
