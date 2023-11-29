@@ -31,7 +31,6 @@ export default function useHandleDataPage() {
   // 캐릭터 이동
   const arrowMove = useCallback(
     (key: string) => {
-      console.log("arrowmove");
       switch (key) {
         case "ArrowUp":
           setMoveClass(moveClass !== "bg-back" ? "bg-back" : "bg-back1");
@@ -74,8 +73,9 @@ export default function useHandleDataPage() {
       if (!status.ITEM && !status.STATUS) arrowMove(key);
 
       switch (key) {
-        case "i":
+        case "i" && "ㅑ":
           setStatus((prev) => ({ ...prev, ITEM: !prev.ITEM }));
+          setData("");
           break;
         case "s":
           setStatus((prev) => ({ ...prev, STATUS: !prev.STATUS }));
@@ -84,18 +84,25 @@ export default function useHandleDataPage() {
           break;
       }
     },
-    [status, arrowMove]
+    [status]
   );
 
   // 아이템창/스탯 선택
   const handleArrow = useCallback(
     (DATA: StrScript, e: React.KeyboardEvent<HTMLDivElement>) => {
-      const ObjectLength = Object.keys(DATA).length;
-      if (e.key === "ArrowDown" && selectNum !== ObjectLength - 1) {
+      const SELECT_DATA = Object.keys(DATA);
+      if (e.key === "ArrowDown" && selectNum !== SELECT_DATA.length - 1) {
         setSelectNum((prev) => prev + 1);
       }
       if (e.key === "ArrowUp" && selectNum !== 0) {
         setSelectNum((prev) => prev - 1);
+      }
+      if (e.key === "Enter") {
+        const findData = DATA[SELECT_DATA[selectNum]];
+        setData(findData);
+      }
+      if (e.key === "Escape") {
+        setData("");
       }
     },
     [selectNum]
