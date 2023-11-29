@@ -12,6 +12,8 @@ import { BACK_PACK } from "@/constant/constant";
 import { MdArrowRight } from "react-icons/md";
 import { lightAni } from "@/styles/animation";
 import useHandleDataPage from "@/hooks/useHandleDataPage";
+import { useRecoilValue } from "recoil";
+import { SelectDataAtom } from "@/recoil/openAboutCharacter/selectDataAtom";
 
 export default function ItemOpen({
   parentRef,
@@ -19,6 +21,7 @@ export default function ItemOpen({
   $status,
 }: ItemOpenProps) {
   const { containerRef, movePos, dragStart, dragEnd } = useDrag(parentRef);
+  const data = useRecoilValue(SelectDataAtom);
 
   return (
     <Container
@@ -30,15 +33,24 @@ export default function ItemOpen({
       draggable
     >
       <BackPack>
-        <Title>가방</Title>
-        {Object.keys(BACK_PACK).map((skill, idx) => (
-          <Item key={idx}>
-            {selectNum === idx && (
-              <MdArrowRight className="icon"></MdArrowRight>
-            )}
-            {skill}
-          </Item>
-        ))}
+        {!data ? (
+          <React.Fragment>
+            <Title>가방</Title>
+            {Object.keys(BACK_PACK).map((skill, idx) => (
+              <Item key={idx}>
+                {selectNum === idx && (
+                  <MdArrowRight className="icon"></MdArrowRight>
+                )}
+                {skill}
+              </Item>
+            ))}
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Title>{Object.keys(BACK_PACK)[selectNum]}</Title>
+            <DataContent>{data}</DataContent>
+          </React.Fragment>
+        )}
       </BackPack>
     </Container>
   );
@@ -86,4 +98,8 @@ const Item = styled.li`
   font-family: var(--font-14);
   font-size: 21px;
   padding-left: 10px;
+`;
+
+const DataContent = styled.li`
+  margin-top: 20px;
 `;
