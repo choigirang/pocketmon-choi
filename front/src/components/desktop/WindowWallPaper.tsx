@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import Image from "next/image";
-import logo from "../../../public/image/Windows_Logo.svg";
+
 import BtmNav from "./bottom/BtmNav";
 import IconGrid from "./IconGrid";
-import { useRecoilState } from "recoil";
-import { MenuAtom } from "@/recoil/menuBtn/menuAtom";
 
+import styled from "styled-components";
+import logo from "../../../public/image/Windows_Logo.svg";
+
+/** 바탕화면 */
 export default function WindowWallPaper() {
   return (
     <Container>

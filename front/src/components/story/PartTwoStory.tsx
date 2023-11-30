@@ -1,11 +1,17 @@
-import useMoveClass from "@/hooks/useHandleDataPage";
-import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
-import React, { useEffect, useRef, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { styled } from "styled-components";
+import React, { useRef } from "react";
+
 import ItemOpen from "./character/ItemOpen";
 import { CharacterPos, dataPageProps } from "@/types/props";
 
+import { styled } from "styled-components";
+
+/**
+ * pokemon/story에서 사용될 컴포넌트
+ * @param {Item: boolean, Status: boolean} status 아이템창 or 스텟창 확인 recoil 값
+ * @param {x: number, y: number} character 캐릭터 이동을 추적할 좌표값
+ * @param {seletNum} selectNum 아이템 목록 중 선택한 아이템 인덱스
+ * @param {string} moveClass 커스텀 훅으로 전해받은 이미지 스프라이트 className
+ */
 export default function PartTwoStory({
   status,
   character,

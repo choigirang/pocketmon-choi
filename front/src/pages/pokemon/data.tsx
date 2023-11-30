@@ -1,12 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
+import React, { useEffect, useRef } from "react";
+
 import PartTwoStory from "../../components/story/PartTwoStory";
 import useHandleDataPage from "@/hooks/useHandleDataPage";
 import { BACK_PACK } from "@/constant/constant";
 
+import { styled } from "styled-components";
+
+/** 포켓몬 게임 페이지 */
 export default function data() {
+  // div keyDown 부여를 위한 요소 지정
   const focusRef = useRef<HTMLDivElement>(null);
 
+  // 이동한 캐릭터 움직임 훅
   const { selectNum, status, moveClass, character, handleKey, handleArrow } =
     useHandleDataPage();
 

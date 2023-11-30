@@ -1,13 +1,14 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { styled } from "styled-components";
 import Image from "next/image";
-import Menu from "@/components/folder/Menu";
-// import computer from "@/My-Computer.png";
 
+import Menu from "@/components/folder/Menu";
+
+import { styled } from "styled-components";
+
+/** My-computer 아이콘 클릭 시 열릴 페이지 */
 export default function MyComputer() {
   const [hoverItem, setHoverItem] = useState<undefined | string>(undefined);
-  const [clickItem, setClickItem] = useState<undefined | string>(undefined);
+  const [, setClickItem] = useState<undefined | string>(undefined);
 
   return (
     <Container>
@@ -19,7 +20,6 @@ export default function MyComputer() {
       <Menu
         hoverItem={hoverItem}
         setHoverItem={setHoverItem}
-        clickItem={clickItem}
         setClickItem={setClickItem}
       />
       <List></List>

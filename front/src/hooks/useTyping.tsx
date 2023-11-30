@@ -1,8 +1,14 @@
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+
 import { KeyboardEvent } from "@/types/event";
 import { TxtData } from "@/types/props";
-import { useRouter } from "next/router";
-import React, { useEffect, useRef, useState } from "react";
 
+/**
+ * pokemon/index && save에서 사용될 대사에 해당하는 타이핑 효과
+ * @param {[key:string]:string} txt 대사
+ * @param {string} 마지막 타이핑 후 이동될 주소값
+ */
 export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
   // data의 대사로 사용될 순서
   const [showTxt, setShowTxt] = useState(1);

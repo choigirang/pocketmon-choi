@@ -1,16 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { keyframes, styled } from "styled-components";
-import { MdArrowDropDown } from "react-icons/md";
+import React from "react";
 import Image from "next/image";
-import professor from "img/professor.png";
-import { useRouter } from "next/router";
-import { Fade } from "@/types/props";
-import { KeyboardEvent } from "@/types/event";
-import { lightAni, nameAni } from "@/styles/animation";
-import { PART_ONE_DATA } from "@/constant/constant";
-import useTyping from "@/hooks/useTyping";
+import { MdArrowDropDown } from "react-icons/md";
 
+import useTyping from "@/hooks/useTyping";
+import { Fade } from "@/types/props";
+import { PART_ONE_DATA } from "@/constant/constant";
+
+import { styled } from "styled-components";
+import { lightAni, nameAni } from "@/styles/animation";
+import professor from "img/professor.png";
+
+/** pokemon/data 에서 사용도리 컴포넌트 */
 export default function PartOneTutorial() {
+  // 타이핑 효과를 위한 커스텀 훅(키보드 or 마우스 클릭 시 타이핑 효과)
   const { showTxt, displayedTxt, handleClick, handleKeyBoard, fade, ref } =
     useTyping({ txt: PART_ONE_DATA, url: "/pokemon/save" });
 
@@ -26,6 +28,7 @@ export default function PartOneTutorial() {
       {/* 하단 텍스트 */}
       <TextBoxBorder>
         <TextBox>
+          {/* 마지막 대사 시 이름 추가 */}
           {showTxt === Object.keys(PART_ONE_DATA).length ? (
             <>
               <Name className="name">최기랑</Name> {displayedTxt}

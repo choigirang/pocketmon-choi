@@ -1,17 +1,13 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { styled } from "styled-components";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { ICONS_FILE } from "@/constant/constant";
+
 import useRemoverExtension from "../../hooks/useRemoverExtension";
 import { useChangeIconBg } from "@/hooks/useChangeIconBg";
 import useOpenWindow from "@/hooks/useOpenWindow";
 import useClickOutside from "@/hooks/useClickOutside";
+import { ICONS_FILE } from "@/constant/constant";
+
+import { styled } from "styled-components";
 
 export default function IconGrid() {
   // 클릭한 아이콘을 위한 훅
@@ -21,7 +17,7 @@ export default function IconGrid() {
   const removeExtension = useRemoverExtension();
 
   // loadFolder로 DATA와 DATA에 맞는 주소로 이동하는 훅
-  const loadFolder = useOpenWindow(ICONS_FILE);
+  const loadFolder = useOpenWindow();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -64,12 +60,14 @@ const Container = styled.div`
   font-family: "Microsoft";
 `;
 
+// 바탕화면 아이콘 박스
 const ItemBox = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
+// 아이콘
 const Item = styled.li`
   padding: 5px;
   position: relative;
@@ -91,6 +89,7 @@ const FileName = styled.span`
   z-index: 1;
 `;
 
+// 아이콘 클릭 시 효과
 const ClickChangeBg = styled.div`
   position: absolute;
   width: 100%;

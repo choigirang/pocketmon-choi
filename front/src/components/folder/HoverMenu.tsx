@@ -1,6 +1,8 @@
 import React from "react";
+
 import { styled } from "styled-components";
 
+/** 폴더 열릴 시 상단 네비 */
 export default function HoverMenu() {
   const menu = ["(empty)", "(empty)", "(empty)", "(empty)", "(empty)"];
 

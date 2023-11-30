@@ -1,16 +1,13 @@
-import { ICONS_FILE } from "@/constant/constant";
-import useOpenWindow from "@/hooks/useOpenWindow";
-import { FlexibleScale, HoverItem } from "@/types/props";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FlexibleScale, HoverItem } from "@/types/props";
+
+import useOpenWindow from "@/hooks/useOpenWindow";
+import { ICONS_FILE } from "@/constant/constant";
+
 import { css, styled } from "styled-components";
 
+/** 메뉴를 클릭했을 때 열릴 목록 */
 export default function NavMenu() {
   // Container width
   const [navWidth, setNavWidth] = useState(0);
@@ -39,36 +36,36 @@ export default function NavMenu() {
   }
 
   return (
-    <React.Fragment>
-      <Container
-        ref={navRef}
-        $navWidth={navWidth}
-        $navHeight={navHeight}
-        onMouseLeave={() => setHovered("")}
-      >
-        <LeftWindow>Windows 95</LeftWindow>
-        <LiEl>
-          <UlEl>
-            {Object.keys(ICONS_FILE).map((imageName, idx) => (
-              <Item
-                key={idx}
-                $hovered={hovered === imageName}
-                onMouseOver={() => setHovered(imageName)}
-                onClick={() => openWindow(imageName)}
-              >
-                <Image
-                  src={require(`../../../../public/image/${ICONS_FILE[imageName]}`)}
-                  alt="icon-img"
-                />
-                <FileName>{FirstStrUpper(imageName)}</FileName>
-              </Item>
-            ))}
-          </UlEl>
-        </LiEl>
-        {/* box-shadow z-index를 위한 */}
-        <BoxShadow $navWidth={navWidth} $navHeight={navHeight} />
-      </Container>
-    </React.Fragment>
+    <Container
+      ref={navRef}
+      $navWidth={navWidth}
+      $navHeight={navHeight}
+      onMouseLeave={() => setHovered("")}
+    >
+      {/* 로고 */}
+      <LeftWindow>Windows 95</LeftWindow>
+      <LiEl>
+        <UlEl>
+          {/* 아이콘 목록 */}
+          {Object.keys(ICONS_FILE).map((imageName, idx) => (
+            <Item
+              key={idx}
+              $hovered={hovered === imageName}
+              onMouseOver={() => setHovered(imageName)}
+              onClick={() => openWindow(imageName)}
+            >
+              <Image
+                src={require(`../../../../public/image/${ICONS_FILE[imageName]}`)}
+                alt="icon-img"
+              />
+              <FileName>{FirstStrUpper(imageName)}</FileName>
+            </Item>
+          ))}
+        </UlEl>
+      </LiEl>
+      {/* box-shadow z-index를 위한 */}
+      <BoxShadow $navWidth={navWidth} $navHeight={navHeight} />
+    </Container>
   );
 }
 
@@ -87,6 +84,7 @@ const Container = styled.ul<FlexibleScale>`
     `}
 `;
 
+// 로고
 const LeftWindow = styled.li`
   writing-mode: vertical-lr;
   background-color: #7f8279;
@@ -97,6 +95,7 @@ const LeftWindow = styled.li`
   color: white;
 `;
 
+// 목록
 const Item = styled.li<HoverItem>`
   display: flex;
   align-items: center;
@@ -113,6 +112,7 @@ const FileName = styled.span`
   }
 `;
 
+// hover 시
 const BoxShadow = styled.li<FlexibleScale>`
   width: ${(props) => props.$navWidth && props.$navWidth}px;
   height: ${(props) => props.$navHeight && props.$navHeight}px;

@@ -1,27 +1,30 @@
-import React, {
-  KeyboardEvent,
-  KeyboardEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { styled } from "styled-components";
+import React from "react";
+import { useRecoilValue } from "recoil";
+import { MdArrowRight } from "react-icons/md";
+
 import useDrag from "../../../hooks/useDrag";
 import { ItemOpenProps, PosProps } from "@/types/props";
 import { BACK_PACK } from "@/constant/constant";
-import { MdArrowRight } from "react-icons/md";
-import { lightAni } from "@/styles/animation";
-import useHandleDataPage from "@/hooks/useHandleDataPage";
-import { useRecoilValue } from "recoil";
 import { SelectDataAtom } from "@/recoil/openAboutCharacter/selectDataAtom";
 
+import { styled } from "styled-components";
+import { lightAni } from "@/styles/animation";
+
+/**
+ * pokemon/save 에서 키보드 이벤트 발생 시 열릴 아이템 목록
+ * @param {React.RefObject<HTMLDivElement>} parentRef 아이템창을 드래그하여 옮길 시, 부모 위치 이탈 여부 확인을 위한 ref
+ * @param {number} selectNum 아이템 목록 선택 시, 선택한 숫자에 해당하는 인덱스
+ * @param {Item: boolean, Status: boolean} $status 아이템창 or 상태창 열람 상태를 위한 값
+ */
 export default function ItemOpen({
   parentRef,
   selectNum,
   $status,
 }: ItemOpenProps) {
-  const { containerRef, movePos, dragStart, dragEnd } = useDrag(parentRef);
+  // 선택한 아이템에 대한 내용
   const data = useRecoilValue(SelectDataAtom);
+  // 드래그 관련 훅
+  const { containerRef, movePos, dragStart, dragEnd } = useDrag(parentRef);
 
   return (
     <Container
@@ -34,6 +37,7 @@ export default function ItemOpen({
     >
       <BackPack>
         {!data ? (
+          // 선택한 아이템이 없을 시 보여질 아이템 목록
           <React.Fragment>
             <Title>가방</Title>
             {Object.keys(BACK_PACK).map((skill, idx) => (
@@ -46,6 +50,7 @@ export default function ItemOpen({
             ))}
           </React.Fragment>
         ) : (
+          // 선택한 아이템에 해당하는 설명
           <React.Fragment>
             <Title>{Object.keys(BACK_PACK)[selectNum]}</Title>
             <DataContent>{data}</DataContent>
@@ -70,6 +75,7 @@ const Container = styled.div<PosProps>`
   transition: all 0.1s;
 `;
 
+// 아이템창 border 값을 위한
 const BackPack = styled.ul`
   width: 100%;
   height: 100%;

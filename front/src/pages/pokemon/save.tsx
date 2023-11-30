@@ -1,14 +1,18 @@
-import React, { useEffect, useRef } from "react";
-import { styled } from "styled-components";
-import mainImg from "img/main.png";
+import React from "react";
 import Image from "next/image";
 import { MdArrowRight } from "react-icons/md";
-import { lightAni } from "@/styles/animation";
+
 import useTyping from "@/hooks/useTyping";
 import { SAVE_DATA } from "@/constant/constant";
 import { Fade } from "@/types/props";
 
+import { styled } from "styled-components";
+import { lightAni } from "@/styles/animation";
+import mainImg from "img/main.png";
+
+/** 저장된 데이터 확인 페이지 */
 export default function save() {
+  // 타이핑 효과 후 페이지 이동 훅
   const { ref, displayedTxt, fade, handleClick, handleKeyBoard } = useTyping({
     txt: SAVE_DATA,
     url: "/pokemon/data",

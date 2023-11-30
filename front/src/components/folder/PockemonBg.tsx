@@ -2,6 +2,7 @@ import { Fade } from "@/types/props";
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
+/** pokemon/index 에서 사용할 배경화면 */
 export default function PockemonBg() {
   const [fade, setFade] = useState(true);
 

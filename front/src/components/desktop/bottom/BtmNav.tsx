@@ -1,14 +1,17 @@
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
-import Image from "next/image";
-import pixel_logo from "img/window_pixel.svg";
-import { BtmOpenProps } from "@/types/props";
-import NavMenu from "./NavMenu";
-import clock from "img/clock.svg";
+import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
+import Image from "next/image";
+import { BtmOpenProps } from "@/types/props";
+
+import NavMenu from "./NavMenu";
 import { NavAtom } from "@/recoil/menuBtn/menuAtom";
 import useClickOutside from "@/hooks/useClickOutside";
 
+import { styled } from "styled-components";
+import pixel_logo from "img/window_pixel.svg";
+import clock from "img/clock.svg";
+
+/** 시작 메뉴 */
 export default function BtmNav() {
   // 시간 설정 Clock
   const [timer, setTimer] = useState("00:00");
@@ -43,10 +46,12 @@ export default function BtmNav() {
   return (
     <Container>
       {menuOpen && <NavMenu />}
+      {/* 메뉴 버튼 */}
       <Btn $open={menuOpen} onClick={() => setMenuOpen(!menuOpen)} ref={btnRef}>
         <Image src={pixel_logo} alt="" className="pixel-logo" width={30} />
         <span>Start</span>
       </Btn>
+      {/* 우측 시계 */}
       <Clock>
         <Image src={clock} alt="clock-img" width={16} />
         <div className="timer">{timer}</div>

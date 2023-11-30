@@ -1,14 +1,16 @@
-import { StrScript } from "@/constant/constant";
+import React, { useCallback, useState } from "react";
+import { useRecoilState } from "recoil";
+
 import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
 import { SelectDataAtom } from "@/recoil/openAboutCharacter/selectDataAtom";
-import React, { useCallback, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { StrScript } from "@/constant/constant";
 
 type MoveDirection = {
   x?: number;
   y?: number;
 };
 
+/** pokemon/save 에서 캐릭터의 이동 훅 */
 export default function useHandleDataPage() {
   // 캐릭터 좌표값
   const [character, setCharacter] = useState({ x: 0, y: 96 });
