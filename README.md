@@ -1,40 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">포켓몬 최</h1>
+<div  align="center">
+  <img width="442" alt="image" src="https://github.com/choigirang/pocketmon-choi/assets/118104644/f6ef2151-0a55-4396-879e-3df337a8a209">
+</div>
 
-## Getting Started
+<h5 align="center">개발기간: 2023.11.01 ~ 2022.11.26</h5>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **프로젝트 명 :** `pokemon-choi`
+- **프로젝트 소개 :** 포켓몬 게임 흉내내기.
+<!-- - **배포 링크 :** <a href='https://sidequest.co.kr' target='_blank'>Why-Community</a> -->
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## pokemon-choi
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- 포켓몬스터 게임 웹페이지 실행화면을 구현해보았습니다.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 기술 목록
 
-## Learn More
+## FrontEnd
 
-To learn more about Next.js, take a look at the following resources:
+|                                                                                    TypeScript                                                                                     |                                                                                      Next.js                                                                                      |                                                                                 Recoil                                                                                 |                                                                                   styled<br>components                                                                                   |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/nextdotjs/#61DAFB" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/recoil" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/styledcomponents/#61DAFB" alt="icon" width="75" height="75" /></div> |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br />
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 페이지
 
-## Deploy on Vercel
+### 홈 화면
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<img src="https://github.com/choigirang/why-community/assets/118104644/d028abf6-e5f4-46b0-b0bb-0097488e3b12" align="center">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<br>
+
+### 회원가입
+
+- JWT
+- 유효성 검사
+
+<img src="https://github.com/choigirang/why-community/assets/118104644/33e08e43-1ddf-4b32-a657-511ccf2b1f6c" align="center">
+<img src="https://github.com/choigirang/why-community/assets/118104644/c06b4991-9f3e-440d-a8cc-5e5f7f9ce472" align="center">
+
+### 게시글
+
+- CRUD
+- 댓글 CRUD
+
+<img src="https://github.com/choigirang/why-community/assets/118104644/13a33555-da1e-4751-9589-94b71a065edc" align="center">
+<img src="https://github.com/choigirang/why-community/assets/118104644/bce91fbd-90f1-4b71-9470-7f3eee243ca4" align="center">
+
+### 갤러리
+
+- CRD
+
+<img src="https://github.com/choigirang/why-community/assets/118104644/266ce3de-45da-484d-9cb7-88f1e80a5704" align="center">
+
+### 마이페이지
+
+<img src="https://github.com/choigirang/why-community/assets/118104644/019b41fa-a9e4-4122-998c-0928f482cb00" align="center">
+
+### 유저페이지
+
+<img src="https://github.com/choigirang/why-community/assets/118104644/751f66d4-df49-4977-9cca-e4322ac41f27" align="center">
+
+## Git Commit & PR Message
+
+| 태그이름 | 설명                                                  |
+| -------- | ----------------------------------------------------- |
+| feat     | 새로운 기능 추가                                      |
+| chore    | 자잘한 변경                                           |
+| update   | 수정 추가                                             |
+| fix      | git과 관련된 버그 수정                                |
+| design   | CSS 등 UI 수정                                        |
+| style    | 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 |
+| refactor | 코드 리팩토링                                         |
+| docs     | 문서 수정 (MD 파일)                                   |
+| test     | 테스트 코드를 생성하거나 수정 하는 경우               |
