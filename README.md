@@ -45,20 +45,21 @@
 
 - 애니메이션 이후 타이핑 효과를 통한 대사 출력
 
-![20231204_194316](https://github.com/choigirang/pocketmon-choi/assets/118104644/7b94bf88-e337-40ed-82c0-6f2c665f7a68)
-![20231204_194407](https://github.com/choigirang/pocketmon-choi/assets/118104644/12f4aa14-2197-4416-b81d-09791a88e3b4)
+![ezgif com-crop](https://github.com/choigirang/pocketmon-choi/assets/118104644/f8222b0c-e87d-4677-9b06-c7fde9af1af9)
+![ezgif com-crop (1)](https://github.com/choigirang/pocketmon-choi/assets/118104644/0fb05d07-83ed-44f5-8ae5-e136ff7269a1)
 
 ### /pokemon/save
 
 - 키보드 핸들러를 통한 데이터 선택
 
-![20231204_194430](https://github.com/choigirang/pocketmon-choi/assets/118104644/d49e9b11-f7e7-41f2-942e-834816533597)
+![ezgif com-crop (2)](https://github.com/choigirang/pocketmon-choi/assets/118104644/a19bc7e1-b04b-4187-9843-d93a3ae623b7)
 
 ### /pokemon/data
 
 - 키보드 핸들러를 통한 캐릭터 이동 및 선택 데이터에 따른 데이터 지정
+- 아이템창 드래그
 
-![20231204_195703](https://github.com/choigirang/pocketmon-choi/assets/118104644/356151b2-c8b2-4237-becc-eb4aa817db1f)
+![ezgif com-crop (3)](https://github.com/choigirang/pocketmon-choi/assets/118104644/d1a75d43-98c2-4542-b357-3434bb115783)
 
 ## Git Commit & PR Message
 
