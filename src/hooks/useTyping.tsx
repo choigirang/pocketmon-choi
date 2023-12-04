@@ -81,7 +81,7 @@ export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
     setTimeout(() => {
       router.push(`${url}`);
     }, 2000);
-  }, [fade]);
+  }, [fade, url, router]);
 
   // DivEl 에서 keybordEvent 사용을 위한 focus
   useEffect(() => {

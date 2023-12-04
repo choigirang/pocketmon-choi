@@ -20,7 +20,7 @@ export default function NavMenu() {
   const navRef = useRef<HTMLUListElement>(null);
 
   // windowOpen
-  const openWindow = useOpenWindow(ICONS_FILE);
+  const openWindow = useOpenWindow();
 
   // position bottom 값을 위한
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function NavMenu() {
       setNavWidth(navRef.current.clientWidth);
       setNavHeight(navRef.current.clientHeight);
     }
-  }, [navRef.current]);
+  }, []);
 
   // 파일명 조합
   function FirstStrUpper(txt: string) {

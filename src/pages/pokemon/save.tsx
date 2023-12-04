@@ -11,7 +11,7 @@ import { lightAni } from "@/styles/animation";
 import mainImg from "img/main.png";
 
 /** 저장된 데이터 확인 페이지 */
-export default function save() {
+export default function Save() {
   // 타이핑 효과 후 페이지 이동 훅
   const { ref, displayedTxt, fade, handleClick, handleKeyBoard } = useTyping({
     txt: SAVE_DATA,

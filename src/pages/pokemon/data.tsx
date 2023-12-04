@@ -7,7 +7,7 @@ import { BACK_PACK } from "@/constant/constant";
 import { styled } from "styled-components";
 
 /** 포켓몬 게임 페이지 */
-export default function data() {
+export default function Data() {
   // div keyDown 부여를 위한 요소 지정
   const focusRef = useRef<HTMLDivElement>(null);
 

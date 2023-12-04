@@ -28,7 +28,7 @@ export default function Menu({
       }}
     >
       {menu.map((item, idx) => (
-        <React.Fragment>
+        <React.Fragment key={idx}>
           {/* 메뉴 */}
           <MenuItem
             key={idx}
