@@ -31,41 +31,34 @@
 
 ## 페이지
 
-### 홈 화면
+### /
 
-<img src="https://github.com/choigirang/why-community/assets/118104644/d028abf6-e5f4-46b0-b0bb-0097488e3b12" align="center">
+- 아이콘 선택에 따른 페이지
+
+<img width="1728" alt="image" src="https://github.com/choigirang/pocketmon-choi/assets/118104644/04669fd4-8f18-4975-8d01-fe50438fa8ec">
+
+![20231204_200234](https://github.com/choigirang/pocketmon-choi/assets/118104644/d18f192c-0028-4253-b455-06227601ebd7)
 
 <br>
 
-### 회원가입
+### /pokemon
 
-- JWT
-- 유효성 검사
+- 애니메이션 이후 타이핑 효과를 통한 대사 출력
 
-<img src="https://github.com/choigirang/why-community/assets/118104644/33e08e43-1ddf-4b32-a657-511ccf2b1f6c" align="center">
-<img src="https://github.com/choigirang/why-community/assets/118104644/c06b4991-9f3e-440d-a8cc-5e5f7f9ce472" align="center">
+![20231204_194316](https://github.com/choigirang/pocketmon-choi/assets/118104644/7b94bf88-e337-40ed-82c0-6f2c665f7a68)
+![20231204_194407](https://github.com/choigirang/pocketmon-choi/assets/118104644/12f4aa14-2197-4416-b81d-09791a88e3b4)
 
-### 게시글
+### /pokemon/save
 
-- CRUD
-- 댓글 CRUD
+- 키보드 핸들러를 통한 데이터 선택
 
-<img src="https://github.com/choigirang/why-community/assets/118104644/13a33555-da1e-4751-9589-94b71a065edc" align="center">
-<img src="https://github.com/choigirang/why-community/assets/118104644/bce91fbd-90f1-4b71-9470-7f3eee243ca4" align="center">
+![20231204_194430](https://github.com/choigirang/pocketmon-choi/assets/118104644/d49e9b11-f7e7-41f2-942e-834816533597)
 
-### 갤러리
+### /pokemon/data
 
-- CRD
+- 키보드 핸들러를 통한 캐릭터 이동 및 선택 데이터에 따른 데이터 지정
 
-<img src="https://github.com/choigirang/why-community/assets/118104644/266ce3de-45da-484d-9cb7-88f1e80a5704" align="center">
-
-### 마이페이지
-
-<img src="https://github.com/choigirang/why-community/assets/118104644/019b41fa-a9e4-4122-998c-0928f482cb00" align="center">
-
-### 유저페이지
-
-<img src="https://github.com/choigirang/why-community/assets/118104644/751f66d4-df49-4977-9cca-e4322ac41f27" align="center">
+![20231204_195703](https://github.com/choigirang/pocketmon-choi/assets/118104644/356151b2-c8b2-4237-becc-eb4aa817db1f)
 
 ## Git Commit & PR Message
 
