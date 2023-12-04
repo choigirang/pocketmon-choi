@@ -1,5 +1,6 @@
 import { StrScript } from "@/constant/constant";
 import { CharacterAtom } from "@/recoil/openAboutCharacter/characterAtom";
+import { SelectDataAtom } from "@/recoil/openAboutCharacter/selectDataAtom";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
@@ -18,6 +19,8 @@ export default function useHandleDataPage() {
 
   // 아이템 & 스탯창 open 상태값
   const [status, setStatus] = useRecoilState(CharacterAtom);
+  // 선택한 아이템 데이터
+  const [data, setData] = useRecoilState(SelectDataAtom);
 
   // 이동 방향과 좌표값 변경
   const moveCharacter = (direction: MoveDirection) => {
@@ -66,8 +69,12 @@ export default function useHandleDataPage() {
 
     switch (key) {
       case "i":
+      case "Escape":
         setStatus((prev) => ({ ...prev, ITEM: !prev.ITEM }));
+        setData("");
         break;
+      case "Backspace":
+        setData("");
       case "s":
         setStatus((prev) => ({ ...prev, STATUS: !prev.STATUS }));
         break;
@@ -81,12 +88,16 @@ export default function useHandleDataPage() {
     DATA: StrScript,
     e: React.KeyboardEvent<HTMLDivElement>
   ) => {
+    console.log(e.key);
     const ObjectLength = Object.keys(DATA).length;
     if (e.key === "ArrowDown" && selectNum !== ObjectLength - 1) {
       setSelectNum((prev) => prev + 1);
     }
     if (e.key === "ArrowUp" && selectNum !== 0)
       setSelectNum((prev) => prev - 1);
+    if (e.key === "Enter") {
+      setData(DATA[Object.keys(DATA)[selectNum]]);
+    }
   };
 
   return {
