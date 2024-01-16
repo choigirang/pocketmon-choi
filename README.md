@@ -31,7 +31,7 @@
 
 ## npm
 ```js
-npm i
+npm install
 npm run start
 ```
 
