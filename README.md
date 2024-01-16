@@ -3,7 +3,7 @@
   <img width="442" alt="image" src="https://github.com/choigirang/pocketmon-choi/assets/118104644/f6ef2151-0a55-4396-879e-3df337a8a209">
 </div>
 
-<h5 align="center">개발기간: 2023.11.01 ~ 2022.11.26</h5>
+<h5 align="center">개발기간: 2023.11 ~ 2023.11</h5>
 
 ---
 
@@ -28,6 +28,12 @@
 | <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/nextdotjs/#61DAFB" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/recoil" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start; justify-content: center;"><img src="https://cdn.simpleicons.org/styledcomponents/#61DAFB" alt="icon" width="75" height="75" /></div> |
 
 <br />
+
+## npm
+```js
+npm i
+npm run start
+```
 
 ## 페이지
 
