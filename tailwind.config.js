@@ -12,6 +12,9 @@ module.exports = {
         sm: { max: "640px" },
         md: { min: "641px", max: "1024px" },
       },
+      backgroundColor: {
+        gray: "#bac3bf",
+      },
       transitionProperty: {
         custom: "all", // 사용자 정의 transition 속성을 설정합니다.
       },
@@ -21,17 +24,16 @@ module.exports = {
       transitionDelay: {
         custom: "1s", // 사용자 정의 transition 딜레이를 설정합니다.
       },
-      colors: {
-        customYellow: "#f59e0b",
+      boxShadow: {
+        nav: "rgb(237, 237, 238) 3px 3px inset, rgba(255, 255, 255, 0.5) -3px -3px inset",
+        timer: "#474747 3px 3px inset, #ededee -3px -3px inset",
+        menu: "#ededee 3px 3px inset, #474747 -3px -3px inset",
       },
-      height: {
-        container: "800px",
-      },
+      colors: {},
+      height: {},
       gridTemplateRows: {},
       gridTemplateColumns: {
-        loginBtn: "20% 80%",
-        selectMovie: "40% 60%",
-        savedMovieList: "auto 10px 200px 300px",
+        menu: "30px auto",
       },
     },
   },
