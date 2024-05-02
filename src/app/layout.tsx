@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import "../style/global.css";
+import "../style/reset.css";
+import Nav from "./(common)/(nav)/nav";
 
 const meta: Metadata = {};
 
@@ -10,7 +12,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Nav />
+      </body>
     </html>
   );
 }
