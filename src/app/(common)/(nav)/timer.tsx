@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ClockIcon } from "@heroicons/react/16/solid";
 
 export default function Timer() {
   const [timer, setTimer] = useState("00:00");
@@ -20,5 +21,10 @@ export default function Timer() {
     setTimer(`${hour}:${min}`);
   }
 
-  return <div>{timer}</div>;
+  return (
+    <div className="flex items-center gap-[5px] px-[10px] shadow-timer bg-gray">
+      <ClockIcon color="white" />
+      <span>{timer}</span>
+    </div>
+  );
 }
