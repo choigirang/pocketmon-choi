@@ -13,16 +13,32 @@ export default function Menu() {
         onClick={() => setOpenMenu((prev) => !prev)}
       >
         <Image
-          src="/image/window_pixel.svg"
+          src="/image/window_pixel.webp"
           alt="menu icon"
           width={24}
           height={24}
         />
         <span>Start</span>
       </div>
-      <ul className="absolute bottom-[40px] grid-col-menu bg-gray">
-        <li>Window 95</li>
-      </ul>
+      {openMenu && (
+        <ul className="absolute bottom-[40px] flex bg-gra shadow-menu">
+          <li className="writing-mode py-[10px] bg-[#7f8279] font-bold">
+            Window 95
+          </li>
+          <li className="h-full">
+            <ul>
+              <li>
+                <Image
+                  src="/image/My-Computer.png"
+                  alt="computer img"
+                  width={32}
+                  height={32}
+                ></Image>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      )}
     </React.Fragment>
   );
 }
