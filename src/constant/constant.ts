@@ -1,9 +1,31 @@
+import Computer from "@/app/(common)/(window)/(computer)/computer";
+import Pokemon from "@/app/(common)/(window)/(pokemon)/pokemon";
+
 // 대사
 export type Script = Record<number, string>;
 export type StrScript = Record<string, string>;
 
 // 아이콘 태그
 export type IconNames = Record<string, string>;
+
+export interface IconComponent {
+  name: string;
+  components: React.ReactNode;
+}
+
+export const IconData: { [key: string]: IconComponent } = {
+  pokemon: {
+    name: "pokemon",
+    components: Pokemon(),
+    // list: [{File: {
+    //   exist:
+    // }}],
+  },
+  computer: {
+    name: "computer",
+    components: Computer(),
+  },
+};
 
 // PartOneTutorial
 export const PART_ONE_DATA: Script = {
