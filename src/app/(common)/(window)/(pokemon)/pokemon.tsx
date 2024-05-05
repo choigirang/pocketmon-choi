@@ -1,9 +1,9 @@
-import Loading from "./loading";
+import Story from "./story";
 
 export default function Pokemon() {
   return (
-    <div className="w-full h-full bg-black relative shadow-common">
-      <Loading />
+    <div className="w-full h-full flex justify-center items-center bg-black relative shadow-common">
+      <Story />
     </div>
   );
 }
