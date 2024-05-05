@@ -8,9 +8,12 @@ export interface IconImgProps {
   name: string;
   url: string;
   components: React.ReactNode;
+  menu: boolean;
 }
 
 export default function IconImg(props: IconImgProps) {
+  const { name, url, components, menu } = props;
+
   const [isClick, setIsClick] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,24 +23,27 @@ export default function IconImg(props: IconImgProps) {
   };
 
   return (
-    <React.Fragment>
+    <li
+      className={`${menu ? "border-b-2 border-[#7f8279] border-solid" : undefined} hover:bg-[#1F55BB]`}
+    >
       <div
         onDoubleClick={handleClick}
-        className="relative flex flex-col items-center gap-1 p-[5px] cursor-pointer"
+        className={`relative flex ${menu ? "flex-row" : "flex-col"} items-center gap-1 p-[5px] cursor-pointer`}
       >
-        {/* 클릭 시 배경 */}
-        {isClick && (
-          <div className="absolute w-[80px] h-[80px] bg-[#1F55BB] opacity-70 border-2 border-white border-dashed" />
-        )}
-        <Image width={50} height={50} src={props.url} alt={props.name} />
-        <span>{props.name}</span>
+        <Image
+          width={menu ? 24 : 50}
+          height={menu ? 24 : 50}
+          src={url}
+          alt={name}
+        />
+        <span>{name}</span>
       </div>
       {/* 실행 창 open */}
       {isOpen && (
         <WindowFrame props={props} handleClick={handleClick}>
-          {props.components}
+          {components}
         </WindowFrame>
       )}
-    </React.Fragment>
+    </li>
   );
 }
