@@ -12,6 +12,9 @@ module.exports = {
         sm: { max: "640px" },
         md: { min: "641px", max: "1024px" },
       },
+      fontFamily: {
+        pokemon: "Pokemon Solid",
+      },
       backgroundColor: {
         gray: "#bac3bf",
       },
