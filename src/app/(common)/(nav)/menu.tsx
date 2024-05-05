@@ -1,5 +1,7 @@
 "use client";
 
+import IconImg from "@/app/(home)/iconImg";
+import { IconData } from "@/constant/constant";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -21,20 +23,21 @@ export default function Menu() {
         <span>Start</span>
       </div>
       {openMenu && (
-        <ul className="absolute bottom-[40px] flex bg-gra shadow-menu">
-          <li className="writing-mode py-[10px] bg-[#7f8279] font-bold">
+        <ul className="absolute bottom-[40px] flex bg-gray shadow-menu">
+          <li className="writing-mode w-5 h-[200px] py-[10px] bg-[#7f8279] font-bold">
             Window 95
           </li>
           <li className="h-full">
             <ul>
-              <li>
-                <Image
-                  src="/image/My-Computer.png"
-                  alt="computer img"
-                  width={32}
-                  height={32}
-                ></Image>
-              </li>
+              {Object.keys(IconData).map((data) => (
+                <IconImg
+                  key={data}
+                  name={data}
+                  url={`/image/${data}.webp`}
+                  components={IconData[data].components}
+                  menu={true}
+                />
+              ))}
             </ul>
           </li>
         </ul>
