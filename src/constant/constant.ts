@@ -21,10 +21,6 @@ export const IconData: { [key: string]: IconComponent } = {
     //   exist:
     // }}],
   },
-  computer: {
-    name: "computer",
-    components: Computer(),
-  },
 };
 
 // PartOneTutorial
