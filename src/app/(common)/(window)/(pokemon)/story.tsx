@@ -3,9 +3,10 @@
 import React, { Suspense, useState } from "react";
 
 const Loading = React.lazy(() => import("./loading"));
-const PartOne = React.lazy(() => import("./partOne"));
-const PartTwo = React.lazy(() => import("./partTwo"));
+const PartOne = React.lazy(() => import("./(part)/partOne"));
+const PartTwo = React.lazy(() => import("./(part)/partTwo"));
 
+/** 2024/05/05 - pokemon 에서 보여질 스토리, setStep을 이용한 컴포넌트 전환 */
 export default function Story() {
   const [step, setStep] = useState(0);
 

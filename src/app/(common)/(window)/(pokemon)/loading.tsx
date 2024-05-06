@@ -3,10 +3,11 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
+/* 2024/05/05 - loading bg, 3초뒤 nextStep => 다음 컴포넌트 전환(story) */
 export default function Loading({ setStep }: { setStep: () => void }) {
   const [loading, setLoading] = useState(true);
 
-  // 초기 배경 setTime
+  /* 배경화면 3초 후 다음 컴포넌트 넘기기*/
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
