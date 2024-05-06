@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ClockIcon } from "@heroicons/react/16/solid";
 
+/** 2024/05/04 - 시간 */
 export default function Timer() {
   const [timer, setTimer] = useState("00:00");
 
@@ -23,7 +24,7 @@ export default function Timer() {
 
   return (
     <div className="flex items-center gap-[5px] px-[10px] shadow-timer bg-gray">
-      <ClockIcon color="white" />
+      <ClockIcon color="black" width={16} height={16} />
       <span>{timer}</span>
     </div>
   );
