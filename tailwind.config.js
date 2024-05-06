@@ -37,7 +37,7 @@ module.exports = {
       colors: {},
       height: {},
       gridTemplateRows: {
-        wallpaper: "80px",
+        wallpaper: "repeat(80px)",
       },
       gridTemplateColumns: {
         menu: "30px auto",
