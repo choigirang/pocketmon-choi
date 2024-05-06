@@ -27,9 +27,9 @@ export default function useHandleCharacter() {
       case "ArrowUp":
         setMoveClass(moveClass !== "back" ? "back" : "back1");
         // 시작점 및 가구 제외
-        if (x >= 0 && x <= 250 - img && y <= 0 - img) return;
+        if (x <= 240 && y <= 60) return;
         // 벽 제외
-        if (x >= 384 && y <= 32 - img) return;
+        if (y <= 30) return;
         moveCharacter({ y: y - 16 });
         break;
       case "ArrowDown":
@@ -41,9 +41,9 @@ export default function useHandleCharacter() {
       case "ArrowLeft":
         setMoveClass(moveClass !== "left" ? "left" : "left1");
         // 화면 크기
-        if (x === 0) return;
+        if (x <= 0) return moveCharacter({ x: 0 });
         // 가구 제외
-        if (x >= 250 - img && y < 60) return moveCharacter({ x: 250 });
+        if (x <= 250 && y <= 30) return;
         moveCharacter({ x: x - 16 });
         break;
       case "ArrowRight":
