@@ -1,8 +1,8 @@
 "use client";
 
-import { WindowItem, windowState } from "@/recoil/window/atom";
+import { WindowItem, windowState } from "@/recoil/window/windowState";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDrag } from "react-use-gesture";
 import { useRecoilValue } from "recoil";
 import Buttons from "./buttons.tsx";
@@ -17,18 +17,34 @@ export default function WindowFrame({ props, children }: WindowProps) {
   const isWindow = useRecoilValue(windowState);
 
   /* 이미 열린 창 있을 시 위치 조정 */
-  const [logoPos, setlogoPos] = useState({
-    x: isWindow.length * 10,
-    y: isWindow.length * 10,
-  });
+  let initialX = isWindow.length * 10;
+  let initialY = isWindow.length * 10;
 
-  /* 드래그 */
-  const bindLogoPos = useDrag(({ offset }) => {
-    setlogoPos((prev) => ({
-      x: prev.x + offset[0],
-      y: prev.y + offset[1],
-    }));
-  });
+  // 로고의 최종 위치 상태
+  const [logoPos, setLogoPos] = useState({ x: initialX, y: initialY });
+
+  const bindLogoPos = useDrag(
+    (state) => {
+      const {
+        down,
+        movement: [mx, my],
+      } = state;
+      if (down) {
+        // 초기 위치에서 이동량을 더해 위치 업데이트
+        setLogoPos({ x: mx, y: my });
+      } else {
+        // 드래그 중의 마지막 위치를 초기 위치로 설정
+        setLogoPos((prev) => {
+          initialX = prev.x;
+          initialY = prev.y;
+          return prev;
+        });
+      }
+    },
+    {
+      initial: () => [logoPos.x, logoPos.y], // 드래그 시작 시의 로고 위치
+    }
+  );
 
   return (
     // 드래그
@@ -43,7 +59,7 @@ export default function WindowFrame({ props, children }: WindowProps) {
           <Image
             width={16}
             height={16}
-            src={`/image/${props.name}.webp`}
+            src={`/image/icon/${props.name}.webp`}
             alt={props.name}
           />
           <span>{props.name}</span>
