@@ -5,6 +5,7 @@ import { IconData } from "@/constant/constant";
 import Image from "next/image";
 import React, { useState } from "react";
 import Computer from "../(window)/(computer)/computer";
+import UserFiles from "@/app/(home)/userFiles";
 
 /** 2024/05/06 - 시작 메뉴, 프로그램 목록*/
 export default function Menu() {
@@ -31,14 +32,6 @@ export default function Menu() {
           </li>
           <li className="h-full">
             <ul className="flex flex-col">
-              {Object.keys(IconData).map((data) => (
-                <IconImg
-                  key={data}
-                  name={data}
-                  components={IconData[data].components}
-                  menu
-                />
-              ))}
               {/* 컴퓨터 안에 컴퓨터 호출 초기화 문제로 별도 추가 */}
               <IconImg
                 key={"computer"}
@@ -46,6 +39,15 @@ export default function Menu() {
                 components={Computer()}
                 menu
               />
+              {Object.keys(IconData).map((data) => (
+                <IconImg
+                  key={data}
+                  name={data}
+                  components={IconData[data].components()}
+                  menu
+                />
+              ))}
+              <UserFiles menu />
             </ul>
           </li>
         </ul>
