@@ -3,11 +3,12 @@
 import Image from "next/image";
 import React from "react";
 import { useRecoilState } from "recoil";
-import { windowState } from "@/recoil/window/atom";
+import { windowState } from "@/recoil/window/windowState";
 
 export interface IconImgProps {
   name: string;
   components: React.ReactNode;
+  id?: number;
   menu?: boolean;
   folder?: boolean;
 }
@@ -33,9 +34,9 @@ export default function IconImg(props: IconImgProps) {
   // menu, folder에 따른 스타일 지정
   const menuStyle = () => {
     if (menu)
-      return "flex-row border-b-2 border-[#7f8279] border-solid px-2 pr-4 py-1";
+      return "flex-row border-b-2 border-[#7f8279] text-stone-700 border-solid px-2 pr-4 py-1 gap-2";
     else
-      return "h-full flex-col justify-center items-center py-2 hover:outline-1 hover:outline-white hover:outline-dashed";
+      return `h-full flex-col justify-center items-center text-white py-2 hover:outline-1 hover:outline-white hover:outline-dashed ${folder && "text-stone-700"}`;
   };
 
   // menu, folder에 따른 img size
@@ -48,15 +49,15 @@ export default function IconImg(props: IconImgProps) {
   return (
     <li
       onClick={handleClick}
-      className={`flex items-center hover:bg-[#1F55BB] cursor-pointer ${menuStyle()}`}
+      className={`relative flex items-center hover:text-white hover:bg-[#1F55BB] cursor-pointer ${menuStyle()}`}
     >
       <Image
         width={handleImgSize()}
         height={handleImgSize()}
-        src={`/image/${name}.webp`}
+        src={`/image/icon/${name}.webp`}
         alt={`${name} img`}
       />
-      <span className="text-stone-800">{name}</span>
+      <span>{name}</span>
     </li>
   );
 }
