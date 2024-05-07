@@ -23,7 +23,7 @@ export default function Loading({ setStep }: { setStep: () => void }) {
     <React.Fragment>
       {loading && (
         <div className="w-full h-full relative">
-          <Image src="/image/loading.png" fill alt="loading" sizes="100vw" />
+          <Image src="/image/pokemon/loading.png" fill alt="loading" sizes="100vw" />
 
           <span className="absolute z-100 top-[50px] left-1/2 -translate-x-1/2 text-[#ffcc01] text-2xl font-pokemon text-logo">
             Pokemon Choi

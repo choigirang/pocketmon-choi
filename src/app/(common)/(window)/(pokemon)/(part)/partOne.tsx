@@ -20,7 +20,7 @@ export default function PartOne({ setStep }: { setStep: () => void }) {
   return (
     <div className="relative w-full h-full flex justify-center items-center bg-white">
       <Image
-        src="/image/professor.webp"
+        src="/image/pokemon/professor.webp"
         alt="charater"
         width={100}
         height={150}

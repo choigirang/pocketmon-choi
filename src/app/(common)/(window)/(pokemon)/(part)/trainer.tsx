@@ -19,7 +19,7 @@ export default function Trainer() {
 
   return (
     <Image
-      src={`/image/trainer/${moveClass}.webp`}
+      src={`/image/pokemon/trainer/${moveClass}.webp`}
       alt="character"
       width={32}
       height={32}
