@@ -34,7 +34,10 @@ module.exports = {
         menu: "#ededee 3px 3px inset, #474747 -3px -3px inset",
         inner: "inset 3px 4px 2px 0px #777777",
       },
-      colors: {},
+      colors: {
+        common: "#7f8279",
+        dark: "#818181",
+      },
       height: {},
       gridTemplateRows: {
         wallpaper: "repeat(80px)",
