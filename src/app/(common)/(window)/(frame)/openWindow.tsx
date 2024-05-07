@@ -1,6 +1,6 @@
 "use client";
 
-import { windowState } from "@/recoil/window/atom";
+import { windowState } from "@/recoil/window/windowState";
 import WindowFrame from "./windowFrame";
 import { useRecoilValue } from "recoil";
 import React from "react";
