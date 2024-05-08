@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 import { KeyboardEvent } from "@/types/event";
 import { TxtData } from "@/types/props";
@@ -9,7 +8,7 @@ import { TxtData } from "@/types/props";
  * @param {[key:string]:string} txt 대사
  * @param {string} 마지막 타이핑 후 이동될 주소값
  */
-export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
+export default function useTyping({ txt }: { txt: TxtData }) {
   // data의 대사로 사용될 순서
   const [showTxt, setShowTxt] = useState(1);
 
@@ -22,15 +21,12 @@ export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
   // lightAni 효과를 위한
   const [fade, setFade] = useState(false);
 
-  const router = useRouter();
-
-  // div의 focus를 위한 ref
-  const ref = useRef<HTMLDivElement>(null);
-
-  // 클릭 시 핸들러
-  const handleClick = () => {
+  // 키보드 핸들러
+  const handleBoard = () => {
+    // 불러올 대사 없을 시 fade
     if (showTxt === Object.keys(txt).length) return setFade(true);
 
+    // 다음 대사 있을 시
     if (showTxt < Object.keys(txt).length) {
       if (txtIdx < txt[showTxt].length) {
         setDisplayedTxt(txt[showTxt]);
@@ -39,26 +35,6 @@ export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
         setShowTxt(showTxt + 1);
         setDisplayedTxt("");
         setTxtIdx(0);
-      }
-    }
-  };
-
-  // 키보드 핸들러
-  const handleKeyBoard = (e: KeyboardEvent) => {
-    if (e.key === " " || e.key === "Enter" || e.key === "ArrowDown") {
-      // 불러올 대사 없을 시 fade
-      if (showTxt === Object.keys(txt).length) return setFade(true);
-
-      // 다음 대사 있을 시
-      if (showTxt < Object.keys(txt).length) {
-        if (txtIdx < txt[showTxt].length) {
-          setDisplayedTxt(txt[showTxt]);
-          setTxtIdx(txt[showTxt].length);
-        } else {
-          setShowTxt(showTxt + 1);
-          setDisplayedTxt("");
-          setTxtIdx(0);
-        }
       }
     }
   };
@@ -75,18 +51,5 @@ export default function useTyping({ txt, url }: { txt: TxtData; url: string }) {
     }
   }, [showTxt, txtIdx, txt]);
 
-  // fade 시 lightAni 효과 후 주소 이동
-  useEffect(() => {
-    if (!fade) return;
-    setTimeout(() => {
-      router.push(`${url}`);
-    }, 2000);
-  }, [fade, url, router]);
-
-  // DivEl 에서 keybordEvent 사용을 위한 focus
-  useEffect(() => {
-    ref.current!.focus();
-  }, []);
-
-  return { showTxt, displayedTxt, handleClick, handleKeyBoard, fade, ref };
+  return { showTxt, displayedTxt, handleBoard, fade };
 }
