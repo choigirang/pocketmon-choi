@@ -26,12 +26,12 @@ export default function Menu() {
       <span>Start</span>
       {/* menu list */}
       {openMenu && (
-        <ul className="absolute left-0 bottom-[40px] flex bg-gray shadow-menu">
+        <ul className="absolute left-[2px] bottom-[40px] p-[3px] flex bg-gray shadow-menu">
           <li className="flex items-center writing-mode w-7 min-h-[200px] py-[10px] bg-[#7f8279] font-bold">
             Window 95
           </li>
           <li className="h-full">
-            <ul className="flex flex-col">
+            <ul className="flex flex-col gap-2">
               {/* 컴퓨터 안에 컴퓨터 호출 초기화 문제로 별도 추가 */}
               <IconImg
                 key={"computer"}
@@ -43,7 +43,7 @@ export default function Menu() {
                 <IconImg
                   key={data}
                   name={data}
-                  components={IconData[data].components()}
+                  components={IconData[data].components}
                   menu
                 />
               ))}

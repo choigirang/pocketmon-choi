@@ -14,8 +14,6 @@ export default function MakeFiles({ children }: { children: React.ReactNode }) {
   const { pos, showMenu, handleClick, handleContextMenu, makeFiles } =
     useMakeFiles();
 
-  console.log(Object.keys(options));
-
   return (
     <div
       className="w-full h-full"

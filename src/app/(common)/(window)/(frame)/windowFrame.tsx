@@ -62,7 +62,9 @@ export default function WindowFrame({ props, children }: WindowProps) {
             src={`/image/icon/${props.name}.webp`}
             alt={props.name}
           />
-          <span>{props.name}</span>
+          <span className="text-stone-800">
+            {props.name[0].toUpperCase() + props.name.slice(1)}
+          </span>
         </div>
         <Buttons {...props} />
       </div>

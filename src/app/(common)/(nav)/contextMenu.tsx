@@ -45,13 +45,13 @@ export default function ContextMenu(props: ContextMenu) {
   return (
     <ul
       ref={ref}
-      className="absolute bg-gray shadow-menu"
+      className="absolute w-[80px] bg-gray shadow-menu"
       style={{ top: props.pos.y - refSize, left: props.pos.x }}
     >
       {lists.map((list) => (
         <li
           key={list}
-          className={`${lists[0] === list && "font-bold"} text-xs py-1 px-2 border-b-[1px] border-solid border-[#7f8279] hover:bg-white`}
+          className={`${lists[0] === list && "font-bold"} text-xs py-1 pl-4 hover:bg-white`}
           onClick={() => handleClick(list)}
         >
           <span className="underline">{list[0]}</span>

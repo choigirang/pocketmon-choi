@@ -33,10 +33,9 @@ export default function IconImg(props: IconImgProps) {
 
   // menu, folder에 따른 스타일 지정
   const menuStyle = () => {
-    if (menu)
-      return "flex-row border-b-2 border-[#7f8279] text-stone-700 border-solid px-2 pr-4 py-1 gap-2";
+    if (menu) return "flex-row text-stone-700 px-2 pr-4 py-1 gap-2";
     else
-      return `h-full flex-col justify-center items-center text-white py-2 hover:outline-1 hover:outline-white hover:outline-dashed ${folder && "text-stone-700"}`;
+      return `h-full flex-col justify-center items-center py-2 hover:outline-1 hover:outline-white hover:outline-dashed ${folder ? "text-stone-700" : "text-white"}`;
   };
 
   // menu, folder에 따른 img size
@@ -57,7 +56,14 @@ export default function IconImg(props: IconImgProps) {
         src={`/image/icon/${name}.webp`}
         alt={`${name} img`}
       />
-      <span>{name}</span>
+      {menu ? (
+        <div className="flex">
+          <span className="underline">{name[0].toUpperCase()}</span>
+          <span>{name.slice(1)}</span>
+        </div>
+      ) : (
+        <span>{name[0].toUpperCase() + name.slice(1)}</span>
+      )}
     </li>
   );
 }

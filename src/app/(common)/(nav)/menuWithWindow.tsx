@@ -34,7 +34,7 @@ export default function MenuWithWindow() {
         {isWindow.map((list) => (
           <li
             key={list.name}
-            className={`relative flex items-center gap-2 h-full ${list.open ? "shadow-inner bg-white" : "shadow-menu"} pl-2 pr-4 cursor-pointer`}
+            className={`relative flex items-center gap-2 h-full ${list.open ? "shadow-inner" : "shadow-menu"} pl-2 pr-4 cursor-pointer border-solid border-[1px] border-gray`}
             onClick={() => handleMenuWindow(list.name)}
             onContextMenu={(e) => handleContextMenu(e)}
           >

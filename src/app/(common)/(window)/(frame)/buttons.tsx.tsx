@@ -13,10 +13,10 @@ export default function Buttons(props: WindowItem) {
         <button
           key={func}
           type="button"
-          className="flex justify-center w-[15px] h-full text-sm bg-gray text-zinc-800 shadow-common px-2 py-1 text-center"
+          className="flex justify-center w-[15px] h-[15px] bg-gray text-zinc-800 shadow-btn text-center text-xs font-bold"
           onClick={() => handleOnOff(func)}
         >
-          <span>{func}</span>
+          {func}
         </button>
       ))}
     </div>
